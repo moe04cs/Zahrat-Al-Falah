@@ -1,0 +1,284 @@
+/* =========================================
+   ZAHRAT AL FALAH - GLOBAL DESIGN SYSTEM
+   ========================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Montserrat:wght@400;600;800&display=swap");
+
+:root {
+  /* Brand Colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #242424;
+  --accent-gold: #c5a059;
+
+  /* Text Colors */
+  --text-main: #ffffff;
+  --text-muted: #b3b3b3;
+
+  /* Typography System */
+  --font-en: "Montserrat", sans-serif;
+  --font-ar: "Cairo", sans-serif;
+
+  /* Layout & Spacing (Mobile Default) */
+  --container-width: 1200px;
+  --section-padding: 50px 20px; /* Tighter padding for mobile */
+  --border-radius: 6px;
+
+  /* Default Font */
+  --main-font: var(--font-ar);
+}
+
+html[dir="ltr"] {
+  --main-font: var(--font-en);
+}
+
+/* =========================================
+   BASE RESET & TYPOGRAPHY
+   ========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--main-font);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--accent-gold);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-size: 1rem; /* Base font size for mobile */
+}
+
+/* =========================================
+   MOBILE-FIRST UTILITY CLASSES
+   ========================================= */
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+section {
+  padding: var(--section-padding);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--accent-gold);
+  border: 2px solid var(--accent-gold);
+  padding: 10px 24px;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+  width: 100%; /* Full width buttons on mobile */
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-gold);
+  color: var(--bg-primary);
+}
+
+/* Base Flexbox - Stacks vertically on mobile */
+.flex-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+/* =========================================
+   HEADER & NAVIGATION
+   ========================================= */
+
+.site-header {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid #333;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100; /* Keeps header on top when scrolling */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  display: block;
+}
+
+/* Mobile defaults */
+.nav-links {
+  display: none; /* Hidden on mobile by default */
+}
+
+.mobile-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: none;
+  color: var(--accent-gold);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.lang-switch {
+  color: var(--accent-gold);
+  text-decoration: none;
+  font-weight: 800;
+  font-family: var(--font-en); /* Keep EN in the English font */
+  border: 1px solid var(--accent-gold);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.lang-switch:hover {
+  background-color: var(--accent-gold);
+  color: var(--bg-primary);
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.site-footer {
+  background-color: #111;
+  padding: 60px 20px 20px;
+  border-top: 2px solid var(--accent-gold);
+}
+
+.footer-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-col h3 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--accent-gold);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   MEDIA QUERIES (Tablet & Desktop Upwards)
+   ========================================= */
+
+@media (min-width: 768px) {
+  :root {
+    --section-padding: 80px 20px; /* Larger padding for desktop */
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+
+  .btn-primary {
+    width: auto; /* Auto width on larger screens */
+  }
+
+  /* Shifts to side-by-side row. RTL natively handles the right-to-left flow! */
+  .flex-grid {
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .flex-grid > * {
+    flex: 1; /* Children take up equal space */
+  }
+}
+@media (min-width: 768px) {
+  .logo img {
+    height: 70px;
+  }
+
+  .mobile-menu-btn {
+    display: none; /* Hide hamburger on desktop */
+  }
+
+  .mobile-controls {
+    display: none; /* Hide mobile-specific wrapper */
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .nav-links a.main-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+
+  .nav-links a.main-link:hover {
+    color: var(--accent-gold);
+  }
+
+  .footer-grid {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-col {
+    flex: 1;
+  }
+}

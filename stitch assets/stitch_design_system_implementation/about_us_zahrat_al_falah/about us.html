@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us - Zahrat Al Falah</title>
+<!-- Google Fonts: Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffdea5",
+                        "tertiary": "#cac6c3",
+                        "outline": "#8e9192",
+                        "outline-variant": "#444748",
+                        "background-dark": "#121212",
+                        "accent-gold": "#C5A059",
+                        "tertiary-fixed-dim": "#cac6c3",
+                        "primary-fixed": "#e5e2e1",
+                        "secondary-container": "#604403",
+                        "primary-container": "#121212",
+                        "surface-container-highest": "#353434",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-tertiary-container": "#807d7b",
+                        "error": "#ffb4ab",
+                        "on-secondary": "#412d00",
+                        "on-secondary-container": "#dab36a",
+                        "background": "#141313",
+                        "surface": "#141313",
+                        "on-surface-variant": "#c4c7c7",
+                        "on-secondary-fixed": "#261900",
+                        "text-primary": "#FFFFFF",
+                        "accent-bronze": "#8E6F3E",
+                        "surface-container": "#201f1f",
+                        "inverse-primary": "#5f5e5e",
+                        "inverse-on-surface": "#313030",
+                        "surface-tint": "#c8c6c5",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-surface": "#e5e2e1",
+                        "secondary-fixed-dim": "#e9c176",
+                        "surface-bright": "#3a3939",
+                        "text-muted": "#A0A0A0",
+                        "background-surface": "#1E1E1E",
+                        "primary": "#c8c6c5",
+                        "text-on-light": "#121212",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "tertiary-container": "#131211",
+                        "surface-variant": "#353434",
+                        "surface-dim": "#141313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary-fixed": "#e6e1df",
+                        "on-primary-container": "#7e7d7d",
+                        "on-error-container": "#ffdad6",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#1c1b1a",
+                        "surface-container-high": "#2b2a2a",
+                        "on-tertiary": "#32302f",
+                        "surface-container-low": "#1c1b1b",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "on-primary": "#313030",
+                        "on-background": "#e5e2e1",
+                        "secondary": "#e9c176"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "80px",
+                        "unit": "4px",
+                        "margin-edge": "24px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Work Sans"],
+                        "title-sm": ["Work Sans"],
+                        "label-caps": ["Work Sans"],
+                        "headline-md": ["Work Sans"],
+                        "display-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "title-sm": ["20px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background-dark text-text-primary font-body-md text-body-md antialiased selection:bg-accent-gold selection:text-background-dark">
+<!-- TopNavBar Component -->
+<nav class="bg-[#121212] dark:bg-[#121212] docked full-width top-0 z-50 border-b border-amber-500/30 flat no-shadows sticky">
+<div class="flex justify-between items-center w-full px-8 py-6">
+<!-- Brand -->
+<a class="text-2xl font-black tracking-tighter text-amber-500 dark:text-amber-400" href="#">
+                Zahrat Al Falah
+            </a>
+<!-- Navigation Links -->
+<div class="hidden md:flex gap-8 items-center font-['Work_Sans'] tracking-widest uppercase text-[10px] font-semibold">
+<a class="text-amber-500 border-b border-amber-500 pb-1 hover:text-amber-200 hover:border-amber-200 transition-all duration-300 scale-95 active:duration-75" href="#">About</a>
+<a class="text-zinc-400 hover:text-amber-200 hover:border-amber-200 transition-all duration-300 scale-95 active:duration-75" href="#">Services</a>
+<a class="text-zinc-400 hover:text-amber-200 hover:border-amber-200 transition-all duration-300 scale-95 active:duration-75" href="#">Portfolio</a>
+<a class="text-zinc-400 hover:text-amber-200 hover:border-amber-200 transition-all duration-300 scale-95 active:duration-75" href="#">Clients</a>
+<a class="text-zinc-400 hover:text-amber-200 hover:border-amber-200 transition-all duration-300 scale-95 active:duration-75" href="#">Contact</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-6 font-['Work_Sans'] tracking-widest uppercase text-[10px] font-semibold">
+<span class="text-zinc-400 cursor-pointer hover:text-amber-200 transition-all duration-300">EN | AR</span>
+<button class="bg-background-dark border border-accent-gold text-accent-gold px-6 py-3 hover:bg-accent-gold hover:text-background-dark transition-colors duration-300">
+                    Inquire
+                </button>
+</div>
+</div>
+</nav>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="w-full py-section-gap px-margin-edge max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-section-gap items-center">
+<div class="flex flex-col gap-6">
+<span class="font-label-caps text-label-caps text-accent-gold uppercase tracking-widest">Since 1998</span>
+<h1 class="font-display-lg text-display-lg text-text-primary">Mastering the Elements of Luxury Architecture.</h1>
+<p class="font-body-md text-body-md text-text-muted max-w-lg">
+                        For over two decades, Zahrat Al Falah has stood as a pillar of excellence in contracting, specializing in the masterful execution of marble, stone, and granite for high-end architectural projects.
+                    </p>
+</div>
+<div class="relative w-full h-[600px] border border-accent-gold p-unit">
+<img alt="Architectural stone cutting" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="close up of skilled artisan cutting large slab of luxurious white veined marble in a dark industrial workshop with dramatic spotlighting and dust particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIEbNNWM9NVJZD8uHluFDy6lxS9SF-GI4JAxSffzOZTcdc-St2b6D8bnfOqLd4_sCSrFjJXo9_PO9_7dlQqSawcU87YPYPVHtuBeLfjIEGGgVpexxIHEu7fQi-_igO53vhbbj0LLiaMKjyDYeFeRjsXRDwz9A3aO_13kT35J0QxeWm3JTmCB0ziNa3yzCFi4yl1rvp9e3-LFYWHC-h-u0slXyesy_BfVt2-NcyODLKnUA4_DVVtRjFhzwo5TZaxUD5sCbmCthEOGq4"/>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="w-full max-w-7xl mx-auto px-margin-edge">
+<hr class="border-t border-accent-gold opacity-50"/>
+</div>
+<!-- Vision & Goals -->
+<section class="w-full py-section-gap px-margin-edge max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row gap-section-gap">
+<div class="flex-1 border-l-2 border-accent-gold pl-8">
+<h2 class="font-headline-md text-headline-md mb-4 text-text-primary">Our Vision</h2>
+<p class="font-body-md text-body-md text-text-muted">
+                        To be the definitive standard of excellence in the region's contracting and architectural sectors. We envision a landscape defined by structures that are not only structurally sound but exude timeless luxury and meticulous craftsmanship.
+                    </p>
+</div>
+<div class="flex-1 flex flex-col gap-8">
+<div>
+<h3 class="font-title-sm text-title-sm text-accent-gold mb-2">Uncompromising Quality</h3>
+<p class="font-body-md text-body-md text-text-muted">Every slab selected and every cut made is subject to rigorous standards, ensuring a flawless finish for high-end clientele.</p>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-accent-gold mb-2">Precision &amp; Timing</h3>
+<p class="font-body-md text-body-md text-text-muted">In the world of luxury development, timing is as critical as aesthetic. We pride ourselves on executing complex installations with engineered precision on schedule.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Expertise (Bento Grid) -->
+<section class="w-full py-section-gap px-margin-edge bg-background-surface">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col items-center mb-12 text-center">
+<span class="font-label-caps text-label-caps text-accent-gold mb-4 uppercase">Our Mediums</span>
+<h2 class="font-display-lg text-display-lg text-text-primary">The Material Expertise</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="group relative overflow-hidden border border-accent-gold aspect-[4/5] bg-background-dark p-1">
+<img alt="Marble texture" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" data-alt="macro photography of polished calacatta gold marble surface with intricate grey and golden veining under soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2-jQx-J9RukMznpxfg_t1tMfFSrb3wPTwJYo3azMU9r0i8x5DAMkJgH_gqXXSnz6ODy2QRQPgzQZJujBCUvRjM4nTVJe_zDPIxXCSXeR5PD9buZ8swiSwFOTeYywO8Tp_9CI_36mBePrqDrtfcclTYC0Rm348-qDMVuEOEBD8BtMe7lQwIXZ-9YnZC2MZGKPAnjLbTQhosCQUN9VCpqhG7r762akvOdc9fu3NdjcBQE-4L6wyvTXg97WbaVaIC9jaxsTdCbwvT1bU"/>
+<div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#121212] to-transparent">
+<h3 class="font-title-sm text-title-sm text-text-primary">Marble</h3>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative overflow-hidden border border-accent-gold aspect-[4/5] bg-background-dark p-1">
+<img alt="Natural Stone" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" data-alt="close up of rough textured dark grey slate stone wall with architectural lighting highlighting the natural crevices and depth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZqdVVaRj4ZEOCDVLcPj_1wf1VEc6UHfKO6szuChNOF-eW1-LTtcFF5_K4FiPq9d-0TEsugurmzAq78fXEN07eUVPZVpqcsCX9HxO464fc6GxoIqH_ejS-NAOH52e7Z_IgLDr9bQoHV-AsAhMZ0vdYwt7bEDYxFmLMY3a9MdOV36jpuI0Wc5LzIUuqdgL4ewGXQoaQkeCmt6BGxe0PWW005DQR5I8EVtIC31b0dfAx9RRuDav8Mlk-gol9GhEyvef2R1G7gzjVvxcP"/>
+<div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#121212] to-transparent">
+<h3 class="font-title-sm text-title-sm text-text-primary">Stone</h3>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative overflow-hidden border border-accent-gold aspect-[4/5] bg-background-dark p-1">
+<img alt="Granite surface" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" data-alt="detailed surface of polished dark absolute black granite countertop reflecting warm ambient light in a premium kitchen setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoCpBAmXlvIXa7_dCwIWEF9rZcxF_Y5aBXPY32hUF1vLYBL6YivoTZWXY917NCYTtu4TuZsgmHGVCcQJinMN92jjsskNyLI9nh5iOvBSDYPzvEv6TVEHbPLOZXbHYRIdxHyHOvtP_nUaizEJSru6pJvNDrUARXG9h4MmTQhJ1IoKvJ09GHlfRs3D99ODcKBiFpkbDrVj8IYLuoDFlNGyJ8pFZ3iCjb2-xpaXgOe8qx8gdeH6f6AGfB_1JjpNWYg_V5RtvuJ3Cdm7Nf"/>
+<div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#121212] to-transparent">
+<h3 class="font-title-sm text-title-sm text-text-primary">Granite</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Artisans / Engineering Team -->
+<section class="w-full py-section-gap px-margin-edge max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-5 flex flex-col gap-6 order-2 lg:order-1">
+<span class="font-label-caps text-label-caps text-accent-gold uppercase tracking-widest">The Artisans</span>
+<h2 class="font-headline-md text-headline-md text-text-primary">Engineering Brilliance.</h2>
+<p class="font-body-md text-body-md text-text-muted">
+                        Behind every monumental structure is a team of dedicated professionals. Our engineering and technical teams bring decades of combined experience, blending traditional craftsmanship with modern technological precision to overcome the most complex architectural challenges.
+                    </p>
+<button class="self-start mt-4 bg-background-dark border border-accent-gold text-accent-gold font-label-caps text-label-caps px-8 py-4 hover:bg-accent-gold hover:text-background-dark transition-colors duration-300">
+                        MEET THE TEAM
+                    </button>
+</div>
+<div class="lg:col-span-7 relative h-[500px] border border-accent-gold p-unit order-1 lg:order-2">
+<img alt="Engineering team reviewing blueprints" class="w-full h-full object-cover grayscale" data-alt="two professional architects in hardhats reviewing large blueprint plans on a dark wooden table in a dimly lit construction office with warm desk lamp lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaacKLPdGSAqqzKryBz0uuvL8q5iJfXJdOdwlkEBqmq2mXTzRUBfCGhEMNMTIHnDM1jkdnHFE-f4walU0jNpE0jaKC7HNpqDO0rvQealgF5yEl3Nl-u-DTV2JYHe1FbJJ4dC2TrRavpLRkS4E66om-cHJW0oMq8UFuctl0p2b99iNbXxWWaWuYx4XzYn-OjHfIPqYTjfOCKszfS11fOnTPgfvPmijmLo2HZDv5rkgDY9KsrSAd7IY6K_Bq0wHoASgyJj6sXL3VFAl1"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-[#121212] dark:bg-[#121212] w-full border-t border-amber-500/20 flat">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-20 gap-10 max-w-7xl mx-auto">
+<div class="text-xl font-bold text-amber-500">
+                Zahrat Al Falah
+            </div>
+<div class="flex flex-wrap gap-6 font-['Work_Sans'] text-xs tracking-tight text-zinc-500">
+<a class="hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Portfolio</a>
+<a class="hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Contact</a>
+</div>
+<div class="font-['Work_Sans'] text-xs tracking-tight text-zinc-500">
+                © 2024 Zahrat Al Falah. Excellence in Craftsmanship.
+            </div>
+</div>
+</footer>
+</body></html>
