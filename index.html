@@ -4,22 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zahrat Al Falah Contracting Co. | شركة زهرة الفلاح للمقاولات</title>
-    <meta
-      name="description"
-      content="Zahrat Al Falah Arabian Contracting Company - Supplying and installing stone, marble, granite, and interior decoration."
-    />
 
     <script>
-      // 1. Get the user's preferred browser language
-      // navigator.language gets modern browsers, userLanguage is a fallback for older IE
+      // Check the browser's language
       var userLang = navigator.language || navigator.userLanguage;
 
-      // 2. Check if the language string starts with 'ar' (e.g., 'ar', 'ar-SA', 'ar-EG')
+      // Redirect based on language priority (focusing on Arabic first)
       if (userLang.toLowerCase().startsWith("ar")) {
-        // 3. If Arabic, instantly replace the current page with the Arabic folder
         window.location.replace("/ar/");
       } else {
-        // 4. For any other language (English, French, etc.), default to English
+        // Default everything else to English
         window.location.replace("/en/");
       }
     </script>
@@ -27,10 +21,6 @@
   <body>
     <div style="font-family: sans-serif; text-align: center; padding-top: 50px">
       <p>Redirecting... / جاري التحويل...</p>
-      <p>
-        If you are not redirected automatically, please choose your language:
-      </p>
-      <p>إذا لم يتم تحويلك تلقائياً، يرجى اختيار لغتك:</p>
       <a
         href="/en/"
         style="margin-right: 20px; font-weight: bold; color: #c5a059"
