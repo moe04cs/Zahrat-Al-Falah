@@ -11,10 +11,11 @@
 
       // Redirect based on language priority (focusing on Arabic first)
       if (userLang.toLowerCase().startsWith("ar")) {
-        window.location.replace("/ar/");
+        // Removed the first slash, and explicitly named the file
+        window.location.replace("ar/index.html");
       } else {
-        // Default everything else to English
-        window.location.replace("/en/");
+        // Removed the first slash, and explicitly named the file
+        window.location.replace("en/index.html");
       }
     </script>
   </head>
@@ -22,11 +23,13 @@
     <div style="font-family: sans-serif; text-align: center; padding-top: 50px">
       <p>Redirecting... / جاري التحويل...</p>
       <a
-        href="/en/"
+        href="en/index.html"
         style="margin-right: 20px; font-weight: bold; color: #c5a059"
         >English</a
       >
-      <a href="/ar/" style="font-weight: bold; color: #c5a059">العربية</a>
+      <a href="ar/index.html" style="font-weight: bold; color: #c5a059"
+        >العربية</a
+      >
     </div>
   </body>
 </html>
