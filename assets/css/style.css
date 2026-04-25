@@ -471,12 +471,13 @@ section {
 }
 
 .portfolio-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 40px;
-  flex-wrap: wrap;
-  gap: 15px;
+}
+
+/* Ensure the button looks great at the bottom */
+.view-all-btn-container {
+  text-align: center;
+  margin-top: 40px;
 }
 
 .title-with-line {
