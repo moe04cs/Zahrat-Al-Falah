@@ -20,7 +20,7 @@
 
   /* Layout & Spacing (Mobile Default) */
   --container-width: 1200px;
-  --section-padding: 50px 20px; /* Tighter padding for mobile */
+  --section-padding: 50px 20px;
   --border-radius: 6px;
 
   /* Default Font */
@@ -61,7 +61,7 @@ h4 {
 p {
   color: var(--text-muted);
   margin-bottom: 1.5rem;
-  font-size: 1rem; /* Base font size for mobile */
+  font-size: 1rem;
 }
 
 /* =========================================
@@ -93,7 +93,7 @@ section {
   font-weight: 600;
   text-align: center;
   transition: all 0.3s ease;
-  width: 100%; /* Full width buttons on mobile */
+  width: 100%;
 }
 
 .btn-primary:hover {
@@ -107,17 +107,37 @@ section {
   flex-direction: column;
   gap: 20px;
 }
+
 /* =========================================
    HEADER & NAVIGATION
    ========================================= */
 
 .site-header {
+  position: absolute; /* Sits at the top, but scrolls away with the page */
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  padding: 20px 20px;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+/* This class gets added by JS after the Hero section */
+.site-header.sticky-header {
+  position: fixed; /* Sticks to the top of the screen */
   background-color: var(--bg-primary);
   border-bottom: 1px solid #333;
   padding: 15px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 100; /* Keeps header on top when scrolling */
+  animation: slideDown 0.4s ease forwards; /* Smoothly drops down */
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .header-container {
@@ -131,9 +151,8 @@ section {
   display: block;
 }
 
-/* Mobile defaults */
 .nav-links {
-  display: none; /* Hidden on mobile by default */
+  display: none; /* Hidden on mobile */
 }
 
 .mobile-controls {
@@ -154,7 +173,7 @@ section {
   color: var(--accent-gold);
   text-decoration: none;
   font-weight: 800;
-  font-family: var(--font-en); /* Keep EN in the English font */
+  font-family: var(--font-en);
   border: 1px solid var(--accent-gold);
   padding: 4px 10px;
   border-radius: 4px;
@@ -168,26 +187,443 @@ section {
 }
 
 /* =========================================
-   FOOTER
+   HERO SECTION & VIDEO BACKGROUND
+   ========================================= */
+
+.hero {
+  position: relative;
+  height: 80vh; /* Takes up 100% of the screen height */
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures video fills screen without stretching */
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65); /* Darkens video so text is readable */
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive sizing */
+  color: var(--accent-gold);
+  margin-bottom: 20px;
+  min-height: 80px; /* Prevents layout jumping while typing */
+}
+
+.hero p {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: #ddd;
+  margin-bottom: 40px;
+  min-height: 60px;
+}
+
+/* Button fades in AFTER the typing finishes */
+.hero-btn {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.hero-btn.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The Blinking Typewriter Cursor */
+.typing-cursor::after {
+  content: "|";
+  color: var(--accent-gold);
+  margin-inline-start: 5px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+/* =========================================
+   ABOUT INTRO & CLIENT MARQUEE
+   ========================================= */
+
+.intro-section {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  padding-top: 55px; /* Increased from 40px for extra breathing room */
+}
+
+.intro-section h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin-bottom: 20px;
+}
+
+.intro-section p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+/* =========================================
+   CLIENT MARQUEE (Transparent & Larger)
+   ========================================= */
+
+.client-marquee {
+  /* Removed background and borders! */
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* The gradient fades at the edges match the primary dark background now */
+.client-marquee::before,
+.client-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+}
+.client-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
+}
+.client-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 100px; /* Increased gap for larger logos */
+  width: max-content;
+  /* Increased time to 40s because 12 larger logos take more time to scroll */
+  animation: scrollLeft 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.client-logo {
+  height: 150px; /* Much larger logos! */
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.client-logo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================================
+   OUR INFRASTRUCTURE (MODERNIZED)
+   ========================================= */
+
+.infrastructure-section {
+  background-color: #050505; /* Deep absolute black for contrast */
+  position: relative;
+  padding-top: 95px;
+  padding-bottom: 80px;
+}
+
+.section-header {
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.infrastructure-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* The Premium Card Base */
+.infra-card {
+  background: linear-gradient(145deg, #1f1f1f 0%, #121212 100%);
+  padding: 40px 30px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.03); /* Subtle glass edge */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+/* Hover Physics & Glow */
+.infra-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(197, 160, 89, 0.4);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(197, 160, 89, 0.1);
+}
+
+/* Small Golden Icon */
+.infra-icon {
+  width: 45px;
+  height: 45px;
+  fill: var(--accent-gold);
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Large Background Watermark Icon */
+.watermark-icon {
+  position: absolute;
+  top: 10px;
+  left: -15px; /* Pushes it to the far left edge in RTL */
+  width: 140px;
+  height: 140px;
+  fill: var(--text-muted);
+  opacity: 0.03; /* Barely visible by default */
+  z-index: 0;
+  transform: rotate(-10deg);
+  transition: all 0.6s ease;
+}
+
+/* Watermark reacts to hover */
+.infra-card:hover .watermark-icon {
+  opacity: 0.08;
+  fill: var(--accent-gold);
+  transform: rotate(0deg) scale(1.1);
+}
+
+/* Text Styling (Kept above the watermark) */
+.infra-card h3 {
+  color: var(--text-main);
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.infra-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0;
+}
+
+/* =========================================
+   FEATURED PROJECTS (3-ITEM ASYMMETRIC)
+   ========================================= */
+
+.portfolio-section {
+  background-color: var(--bg-primary);
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.portfolio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.title-with-line {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.decorative-line {
+  display: inline-block;
+  width: 40px;
+  height: 2px;
+  background-color: var(--accent-gold);
+}
+
+.title-with-line h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+.portfolio-link {
+  color: var(--accent-gold);
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.portfolio-link:hover {
+  color: #fff;
+}
+
+.portfolio-link svg {
+  transform: scaleX(-1);
+}
+
+/* --- THE GRID --- */
+.portfolio-grid-asymmetric {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile stacks vertically */
+  gap: 20px;
+}
+
+.portfolio-item {
+  position: relative;
+  /* Matches the gold border from your design image */
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  overflow: hidden;
+  background-color: #000;
+  aspect-ratio: 4 / 3; /* Mobile default ratio */
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85; /* Moody darkness */
+  transition:
+    transform 0.8s ease,
+    opacity 0.8s ease;
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; /* Gradient on the bottom half */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+/* White Title, Gold Subtitle to match the image */
+.portfolio-overlay h3 {
+  color: #fff;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  margin-bottom: 5px;
+}
+
+.portfolio-overlay p {
+  color: var(--accent-gold);
+  font-size: 0.85rem;
+  margin-bottom: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* --- DESKTOP LAYOUT --- */
+@media (min-width: 992px) {
+  .portfolio-grid-asymmetric {
+    /* Because it's RTL, the 1.6fr column is on the RIGHT */
+    grid-template-columns: 1.6fr 1fr;
+    grid-template-rows: repeat(2, 320px); /* Locks row height */
+  }
+
+  .portfolio-item {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  /* The big image spans both rows */
+  .featured-large {
+    grid-row: 1 / span 2;
+  }
+}
+
+/* =========================================
+   FOOTER (COMPACT VERSION)
    ========================================= */
 
 .site-footer {
   background-color: #111;
-  padding: 60px 20px 20px;
+  padding: 20px 20px 15px;
   border-top: 2px solid var(--accent-gold);
+  font-size: 0.85rem;
 }
 
 .footer-grid {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  margin-bottom: 40px;
+  gap: 25px;
+  margin-bottom: 25px;
 }
 
 .footer-col h3 {
   color: #fff;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.footer-col p {
+  font-size: 0.85rem;
+  margin-bottom: 15px;
 }
 
 .footer-links {
@@ -195,13 +631,14 @@ section {
 }
 
 .footer-links li {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .footer-links a {
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.3s;
+  font-size: 0.85rem;
 }
 
 .footer-links a:hover {
@@ -209,62 +646,65 @@ section {
 }
 
 .footer-bottom {
-  text-align: center;
-  padding-top: 20px;
+  padding-top: 15px;
   border-top: 1px solid #333;
   color: var(--text-muted);
-  font-size: 0.9rem;
-}
-/* =========================================
-   SOCIAL MEDIA LINKS
-   ========================================= */
-.social-links {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
+  font-size: 0.75rem;
 }
 
-.social-links a {
+/* Footer: Logo & Icons */
+.footer-top-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 15px;
+}
+
+.footer-logo-small {
+  height: 35px; /* Small enough to match the social buttons perfectly */
+  width: auto;
+  display: block;
+}
+
+.social-icons {
+  display: flex;
+  gap: 8px;
+  margin-top: 0;
+}
+
+.social-icons a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 30px;
+  height: 30px;
   background-color: #242424;
-  color: var(--accent-gold);
   border: 1px solid #333;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.9rem;
+  border-radius: 50%;
+  color: var(--accent-gold);
   transition: all 0.3s ease;
 }
 
-.social-links a:hover {
+.social-icons a svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.social-icons a:hover {
   background-color: var(--accent-gold);
   color: var(--bg-primary);
   border-color: var(--accent-gold);
-}
-
-.footer-about-box {
-  display: flex;
-  align-items: center; /* Aligns the text and logo to the middle */
-  gap: 20px; /* Space between the text and the logo */
-}
-
-.footer-logo {
-  width: 100%;
-  max-width: 120px; /* Slightly smaller to fit nicely next to text */
-  height: auto;
-  margin-bottom: 0; /* Removed the bottom margin since they are side-by-side */
-  flex-shrink: 0; /* Prevents the text from squishing the logo */
+  transform: translateY(-2px);
 }
 
 /* =========================================
-   MEDIA QUERIES (Tablet & Desktop Upwards)
+   DESKTOP OVERRIDES (min-width: 768px)
    ========================================= */
 
 @media (min-width: 768px) {
   :root {
-    --section-padding: 80px 20px; /* Larger padding for desktop */
+    --section-padding: 80px 20px;
   }
 
   p {
@@ -272,30 +712,29 @@ section {
   }
 
   .btn-primary {
-    width: auto; /* Auto width on larger screens */
+    width: auto;
   }
 
-  /* Shifts to side-by-side row. RTL natively handles the right-to-left flow! */
   .flex-grid {
     flex-direction: row;
     gap: 30px;
   }
 
   .flex-grid > * {
-    flex: 1; /* Children take up equal space */
+    flex: 1;
   }
-}
-@media (min-width: 768px) {
+
+  /* Header Desktop */
   .logo img {
     height: 70px;
   }
 
   .mobile-menu-btn {
-    display: none; /* Hide hamburger on desktop */
+    display: none;
   }
 
   .mobile-controls {
-    display: none; /* Hide mobile-specific wrapper */
+    display: none;
   }
 
   .nav-links {
@@ -315,12 +754,20 @@ section {
     color: var(--accent-gold);
   }
 
-  .footer-grid {
-    flex-direction: row;
-    justify-content: space-between;
+  .infrastructure-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .footer-col {
-    flex: 1;
+  /* Footer Desktop */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .infrastructure-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
