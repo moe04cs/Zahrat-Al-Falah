@@ -57,39 +57,85 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =========================================
-   PORTFOLIO GALLERY FILTER
+   SMART PORTFOLIO FILTER & LOAD MORE
    ========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
   const filterBtns = document.querySelectorAll(".filter-btn");
   const catalogItems = document.querySelectorAll(".catalog-item");
+  const loadMoreBtn = document.getElementById("load-more-btn");
 
-  // Only run this script if the filter buttons actually exist on the page
-  if (filterBtns.length > 0) {
+  if (filterBtns.length > 0 && catalogItems.length > 0) {
+    let currentFilter = "all";
+    let itemsToShow = 6; // How many images to show at a time
+
+    // Core function to update the grid
+    function updateGrid() {
+      let visibleCount = 0;
+      let totalMatching = 0;
+
+      catalogItems.forEach((item) => {
+        const itemCategory = item.getAttribute("data-category");
+        const isMatch = currentFilter === "all" || currentFilter === itemCategory;
+
+        if (isMatch) {
+          totalMatching++;
+          // If we haven't reached our limit yet, show it
+          if (visibleCount < itemsToShow) {
+            item.style.display = "block";
+            // Tiny animation delay for a smooth staggered reveal
+            setTimeout(() => { item.style.opacity = "1"; }, 50);
+            visibleCount++;
+          } else {
+            // Hide items beyond the limit
+            item.style.display = "none";
+            item.style.opacity = "0";
+          }
+        } else {
+          // Hide items that don't match the category
+          item.style.display = "none";
+          item.style.opacity = "0";
+        }
+      });
+
+      // Show or hide the "Load More" button based on remaining items
+      if (totalMatching > itemsToShow) {
+        if(loadMoreBtn) loadMoreBtn.style.display = "inline-block";
+      } else {
+        if(loadMoreBtn) loadMoreBtn.style.display = "none";
+      }
+    }
+
+    // 1. Listen for Filter Button Clicks
     filterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        
-        // 1. Remove the 'active' gold color from all buttons
+        // Update active button styling
         filterBtns.forEach((b) => b.classList.remove("active"));
-        
-        // 2. Add the 'active' gold color to the clicked button
         btn.classList.add("active");
 
-        // 3. Find out what category we want to see
-        const filterValue = btn.getAttribute("data-filter");
-
-        // 4. Show or hide the images based on the category
-        catalogItems.forEach((item) => {
-          const itemCategory = item.getAttribute("data-category");
-
-          if (filterValue === "all" || filterValue === itemCategory) {
-            item.style.display = "block"; 
-          } else {
-            item.style.display = "none"; 
-          }
-        });
+        // Reset settings for the new category
+        currentFilter = btn.getAttribute("data-filter");
+        itemsToShow = 6; // Reset back to showing 6
+        
+        updateGrid();
       });
     });
+
+    // 2. Listen for "Load More" Button Clicks
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener("click", () => {
+        itemsToShow += 6; // Add 6 more to the limit
+        updateGrid();
+      });
+    }
+
+    // 3. Run once on page load to set the initial state
+    // (We make items transparent in CSS, so JS handles the fade-in)
+    catalogItems.forEach(item => {
+        item.style.transition = "opacity 0.4s ease";
+        item.style.opacity = "0"; 
+    });
+    updateGrid();
   }
 });
 
