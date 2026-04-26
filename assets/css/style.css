@@ -579,22 +579,48 @@ section {
   text-transform: uppercase;
 }
 
-/* --- DESKTOP LAYOUT --- */
-@media (min-width: 992px) {
-  .portfolio-grid-asymmetric {
-    /* Because it's RTL, the 1.6fr column is on the RIGHT */
-    grid-template-columns: 1.6fr 1fr;
-    grid-template-rows: repeat(2, 320px); /* Locks row height */
-  }
+/* =========================================
+   BOTTOM CALL TO ACTION (CTA)
+   ========================================= */
 
-  .portfolio-item {
-    aspect-ratio: auto;
-    height: 100%;
-  }
+.cta-section {
+  padding: 60px 20px;
+  background-color: var(--bg-primary); /* Keeps it consistent */
+}
 
-  /* The big image spans both rows */
-  .featured-large {
-    grid-row: 1 / span 2;
+.cta-content {
+  background-color: var(--bg-secondary); /* Slight contrast lift */
+  padding: 60px 40px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(197, 160, 89, 0.2); /* Subtle gold framing */
+  text-align: center;
+  max-width: 800px;
+}
+
+.cta-content h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.cta-content p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-content .btn-primary {
+  padding: 15px 40px;
+  font-size: 1.1rem;
+}
+
+/* On desktop, make the button look even more inviting */
+@media (min-width: 768px) {
+  .cta-content {
+    padding: 80px;
   }
 }
 
@@ -770,5 +796,129 @@ section {
 @media (min-width: 1024px) {
   .infrastructure-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .portfolio-grid-asymmetric {
+    /* Because it's RTL, the 1.6fr column is on the RIGHT */
+    grid-template-columns: 1.6fr 1fr;
+    grid-template-rows: repeat(2, 320px); /* Locks row height */
+  }
+
+  .portfolio-item {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  /* The big image spans both rows */
+  .featured-large {
+    grid-row: 1 / span 2;
+  }
+}
+
+/* =========================================
+   PORTFOLIO PAGE (HERO & FILTERS)
+   ========================================= */
+
+/* A shorter hero so users get to the catalog faster */
+.portfolio-hero {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.portfolio-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--accent-gold);
+  margin-bottom: 15px;
+}
+
+/* The Sticky Filter Bar */
+.portfolio-filter-bar {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid #333;
+  padding: 20px 0;
+  position: sticky;
+  top: 70px; /* Sticks just below your fixed navigation header */
+  z-index: 100;
+}
+
+.filter-container {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto; /* Allows swiping on mobile */
+  padding-bottom: 10px; /* Room for scrollbar */
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+/* Hides scrollbar in Chrome/Safari */
+.filter-container::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: var(--text-muted);
+  padding: 8px 24px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-family: var(--font-ar);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap; /* Prevents text from breaking into two lines */
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: var(--accent-gold);
+  color: var(--bg-primary);
+  border-color: var(--accent-gold);
+}
+
+/* Edge-to-Edge Mobile Grid */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 40px 0;
+}
+
+.catalog-item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+/* Mobile Edge-to-Edge Override */
+@media (max-width: 767px) {
+  .catalog-grid {
+    padding: 20px 0;
+    gap: 10px; /* Tighter gap on mobile */
+  }
+  .catalog-item {
+    border-radius: 0; /* Removes rounded corners so it touches screen edge */
+  }
+}
+
+/* Desktop Grid Override */
+@media (min-width: 768px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .catalog-item {
+    border-radius: var(--border-radius);
+  }
+}
+@media (min-width: 1024px) {
+  .catalog-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

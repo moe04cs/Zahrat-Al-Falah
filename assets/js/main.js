@@ -55,3 +55,66 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeHeading, 500);
     }
 });
+
+/* =========================================
+   PORTFOLIO GALLERY FILTER
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const catalogItems = document.querySelectorAll(".catalog-item");
+
+  // Only run this script if the filter buttons actually exist on the page
+  if (filterBtns.length > 0) {
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        
+        // 1. Remove the 'active' gold color from all buttons
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        
+        // 2. Add the 'active' gold color to the clicked button
+        btn.classList.add("active");
+
+        // 3. Find out what category we want to see
+        const filterValue = btn.getAttribute("data-filter");
+
+        // 4. Show or hide the images based on the category
+        catalogItems.forEach((item) => {
+          const itemCategory = item.getAttribute("data-category");
+
+          if (filterValue === "all" || filterValue === itemCategory) {
+            item.style.display = "block"; 
+          } else {
+            item.style.display = "none"; 
+          }
+        });
+      });
+    });
+  }
+});
+
+/* =========================================
+   STICKY HEADER LOGIC
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const header = document.querySelector(".site-header");
+  
+  // Look for either the index hero OR the portfolio hero
+  const heroSection = document.querySelector(".hero") || document.querySelector(".portfolio-hero");
+
+  if (header) {
+    window.addEventListener("scroll", () => {
+      // Determine the trigger point (the height of the hero section, or a default 100px)
+      let triggerHeight = heroSection ? heroSection.offsetHeight - 50 : 100;
+
+      // If we scrolled past the trigger point, add the sticky class
+      if (window.scrollY > triggerHeight) {
+        header.classList.add("sticky-header");
+      } else {
+        // Otherwise, remove it to go back to transparent
+        header.classList.remove("sticky-header");
+      }
+    });
+  }
+});
