@@ -5,34 +5,317 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>شركة زهرة الفلاح للمقاولات</title>
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <style>
+      /* إعدادات الألوان والخطوط العامة */
+      :root {
+        --bg-dark: #1a1a1a;
+        --accent-gold: #c5a059;
+        --text-gray: #a0a0a0;
+        --input-bg: #262626;
+        --border-color: #333;
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--bg-dark);
+        color: white;
+        font-family: sans-serif;
+      }
+
+      .contact-section {
+        padding: 80px 20px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 60px;
+        align-items: start;
+      }
+
+      /* الجانب الأيمن: المعلومات */
+      .get-in-touch-label {
+        color: var(--text-gray);
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .main-title {
+        font-family: serif; /* لتحقيق شكل الخط في الصورة */
+        font-size: 3rem;
+        margin: 0 0 25px 0;
+        line-height: 1.2;
+      }
+
+      .description {
+        color: var(--text-gray);
+        line-height: 1.6;
+        margin-bottom: 40px;
+        font-size: 1.05rem;
+      }
+
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .info-row {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .icon-box {
+        width: 36px;
+        height: 36px;
+        background-color: #262626;
+        border: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+      }
+
+      .icon-box svg {
+        width: 18px;
+        height: 18px;
+        fill: var(--accent-gold);
+      }
+
+      .info-text {
+        color: white;
+        font-size: 0.95rem;
+        text-decoration: none;
+      }
+
+      /* الجانب الأيسر: النموذج */
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .full-width {
+        grid-column: span 2;
+      }
+
+      label {
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: var(--text-gray);
+        letter-spacing: 1px;
+        font-weight: bold;
+      }
+
+      input,
+      select,
+      textarea {
+        background-color: var(--input-bg);
+        border: 1px solid var(--border-color);
+        padding: 14px;
+        color: white;
+        border-radius: 4px;
+        font-size: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: #555;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent-gold);
+      }
+
+      .send-btn {
+        grid-column: span 2;
+        background-color: transparent;
+        border: 1px solid #444;
+        color: white;
+        padding: 16px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 4px;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      .send-btn:hover {
+        background-color: white;
+        color: black;
+      }
+
+      /* توافق الجوال */
+      @media (max-width: 850px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .full-width {
+          grid-column: span 1;
+        }
+        .main-title {
+          font-size: 2.2rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
       <div class="mobile-overlay"></div>
-
       <div class="container header-container">
         <div class="logo">
           <a href="index.html">
             <img src="../assets/images/logo.png" alt="زهرة الفلاح" />
           </a>
         </div>
-
         <div class="mobile-controls">
           <a href="../en/index.html" class="lang-switch" dir="ltr">EN</a>
           <button class="mobile-menu-btn" aria-label="القائمة">&#9776;</button>
         </div>
-
         <nav class="nav-links">
-          <button class="close-menu-btn" aria-label="إغلاق">&times;</button>
+          <div class="mobile-menu-top">
+            <img
+              src="../assets/images/logo.png"
+              alt="زهرة الفلاح"
+              class="mobile-menu-logo"
+            />
+            <button class="close-menu-btn" aria-label="إغلاق">&times;</button>
+          </div>
 
           <a href="index.html" class="main-link">الرئيسية</a>
           <a href="about-us.html" class="main-link">من نحن</a>
           <a href="portfolio.html" class="main-link">مشاريعنا</a>
           <a href="contact-us.html" class="main-link">اتصل بنا</a>
-          <a href="../en/index.html" class="lang-switch" dir="ltr">English</a>
+
+          <a href="../en/index.html" class="lang-switch desktop-lang" dir="ltr"
+            >EN</a
+          >
         </nav>
       </div>
     </header>
+    <section class="contact-section">
+      <div class="contact-grid">
+        <div class="contact-side-info">
+          <span class="get-in-touch-label">تواصل معنا</span>
+          <h1 class="main-title">لنناقش تفاصيل مشروعك</h1>
+          <p class="description">
+            سواء كانت فيلا خاصة، قصراً، مبنى تجارياً، أو مشروعاً ضخماً — يسعدنا
+            سماع رؤيتك وتقديم استشارة مجانية وغير ملزمة.
+          </p>
+
+          <div class="contact-details">
+            <div class="info-row">
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                  />
+                </svg>
+              </div>
+              <a href="tel:+966550082834" class="info-text" dir="ltr"
+                >+966 55 008 2834</a
+              >
+            </div>
+
+            <div class="info-row">
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                  />
+                </svg>
+              </div>
+              <span class="info-text">zahrat-alfalah@hotmail.com</span>
+            </div>
+
+            <div class="info-row">
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2m-.2 2A3.6 3.6 0 004 7.6v8.8A3.6 3.6 0 007.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6A3.6 3.6 0 0016.4 4H7.6m9.65 1.5a1.25 1.25 0 011.25 1.25A1.25 1.25 0 0117.25 8 1.25 1.25 0 0116 6.75a1.25 1.25 0 011.25-1.25M12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5m0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"
+                  />
+                </svg>
+              </div>
+              <span class="info-text">zahrat_al_falah على إنستغرام</span>
+            </div>
+
+            <div class="info-row">
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"
+                  />
+                </svg>
+              </div>
+              <span class="info-text"
+                >حي المناخ، مخرج 18، الرياض 21149، المملكة العربية
+                السعودية</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form-wrapper">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>الاسم الكامل</label>
+              <input type="text" placeholder="اسمك الكريم" />
+            </div>
+            <div class="form-group">
+              <label>رقم الجوال</label>
+              <input type="text" placeholder="+966 5x xxx xxxx" dir="ltr" />
+            </div>
+            <div class="form-group full-width">
+              <label>البريد الإلكتروني</label>
+              <input type="email" placeholder="example@mail.com" />
+            </div>
+            <div class="form-group full-width">
+              <label>الخدمة المطلوبة</label>
+              <select>
+                <option value="" disabled selected>اختر خدمة...</option>
+                <option>توريد وتركيب رخام</option>
+                <option>واجهات خارجية</option>
+                <option>ديكورات داخلية</option>
+                <option>أخرى</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label>تفاصيل المشروع</label>
+              <textarea
+                rows="4"
+                placeholder="الموقع، نوع المشروع، المساحة، الجدول الزمني، أي متطلبات خاصة..."
+              ></textarea>
+            </div>
+            <button type="submit" class="send-btn">إرسال الطلب ←</button>
+          </div>
+        </form>
+      </div>
+    </section>
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid">
@@ -45,7 +328,6 @@
               <li><a href="contact-us.html">تواصل معنا</a></li>
             </ul>
           </div>
-
           <div class="footer-col">
             <h3>خدماتنا</h3>
             <ul class="footer-links">
@@ -55,7 +337,6 @@
               <li><a href="#">ديكورات السلالم والارضيات</a></li>
             </ul>
           </div>
-
           <div class="footer-col">
             <h3>تواصل معنا</h3>
             <ul class="footer-links">
@@ -69,7 +350,6 @@
               </li>
             </ul>
           </div>
-
           <div class="footer-col">
             <div class="footer-top-row">
               <div class="social-icons">
@@ -104,12 +384,22 @@
             </p>
           </div>
         </div>
-
         <div class="footer-bottom">
           &copy; 2026 شركة زهرة الفلاح للمقاولات. جميع الحقوق محفوظة.
         </div>
       </div>
     </footer>
+
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img
+        id="lightbox-img"
+        class="lightbox-content"
+        src=""
+        alt="Project Image"
+      />
+    </div>
+
     <script src="../assets/js/main.js"></script>
   </body>
 </html>

@@ -9,100 +9,247 @@
   <body>
     <header class="site-header">
       <div class="mobile-overlay"></div>
-
       <div class="container header-container">
         <div class="logo">
           <a href="index.html">
             <img src="../assets/images/logo.png" alt="زهرة الفلاح" />
           </a>
         </div>
-
         <div class="mobile-controls">
           <a href="../en/index.html" class="lang-switch" dir="ltr">EN</a>
           <button class="mobile-menu-btn" aria-label="القائمة">&#9776;</button>
         </div>
-
         <nav class="nav-links">
-          <button class="close-menu-btn" aria-label="إغلاق">&times;</button>
+          <div class="mobile-menu-top">
+            <img
+              src="../assets/images/logo.png"
+              alt="زهرة الفلاح"
+              class="mobile-menu-logo"
+            />
+            <button class="close-menu-btn" aria-label="إغلاق">&times;</button>
+          </div>
 
           <a href="index.html" class="main-link">الرئيسية</a>
           <a href="about-us.html" class="main-link">من نحن</a>
           <a href="portfolio.html" class="main-link">مشاريعنا</a>
           <a href="contact-us.html" class="main-link">اتصل بنا</a>
-          <a href="../en/index.html" class="lang-switch" dir="ltr">English</a>
+
+          <a href="../en/index.html" class="lang-switch desktop-lang" dir="ltr"
+            >EN</a
+          >
         </nav>
       </div>
     </header>
     <main>
-      <section class="portfolio-hero">
-        <video autoplay loop muted playsinline class="hero-video">
-          <source src="../assets/images/about-bg.mp4" type="video/mp4" />
-        </video>
+      <section
+        class="hero"
+        style="
+          min-height: 60vh;
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <div class="hero-bg-blackhole" id="hero-bg-blackhole">
+          <div class="vertical-gallery-wrapper" id="gallery-track">
+            <div class="gallery-column">
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+            </div>
+            <div class="gallery-column fast">
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+            </div>
+            <div class="gallery-column slow">
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+            </div>
+          </div>
+        </div>
+
         <div class="hero-overlay"></div>
-        <div class="container hero-content">
-          <h1 id="about-heading"></h1>
-          <p id="about-text"></p>
-        </div>
-      </section>
+        <div
+          class="container hero-content"
+          style="
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          "
+        >
+          <div
+            class="hero-over-title"
+            style="
+              opacity: 1 !important;
+              transform: none !important;
+              justify-content: center;
+            "
+          >
+            <span class="dot"></span>
+            <span>تاريخ من التميز · جودة · احترافية</span>
+            <span class="dot"></span>
+          </div>
 
-      <section class="about-section">
-        <div class="container about-grid">
-          <div class="about-image">
-            <img
-              src="https://placehold.co/800x1000/242424/c5a059?text=Our+Factory"
-              alt="مصنع زهرة الفلاح"
-            />
-          </div>
-          <div class="about-info">
-            <div class="title-with-line">
-              <span class="decorative-line"></span>
-              <h2>قصتنا وخبرتنا</h2>
-            </div>
-            <p>
-              تأسست شركة زهرة الفلاح للمقاولات في عام 1998م، ومنذ ذلك الحين ونحن
-              نسعى للتميز في عالم توريد وتركيب الحجر والرخام والجرانيت. بدأنا
-              برؤية واضحة تهدف إلى رفع معايير الجودة في السوق السعودي.
-            </p>
-            <p>
-              على مدار عقدين من الزمان، نجحنا في تنفيذ مئات المشاريع التي تشهد
-              على دقة عملنا، بدءاً من القصور والفيلات الخاصة وصولاً إلى المشاريع
-              الحكومية الكبرى والمجمعات التجارية.
-            </p>
-          </div>
-        </div>
-      </section>
+          <h1
+            class="hero-title"
+            style="
+              opacity: 1 !important;
+              transform: none !important;
+              margin-bottom: 20px;
+              text-align: center;
+            "
+          >
+            من نحن
+          </h1>
 
-      <section class="values-section bg-secondary">
-        <div class="container">
-          <div class="section-header" style="text-align: center">
-            <h2>قيمنا وأهدافنا</h2>
-            <p>الركائز التي بنينا عليها نجاحنا المستمر</p>
-          </div>
-          <div class="infrastructure-grid">
-            <div class="infra-card">
-              <h3>الجودة</h3>
-              <p>
-                لا نقبل بأقل من الكمال في اختيار المواد الخام ودقة القص والتركيب
-                لضمان عمر مديد وجمال لا يبهت.
-              </p>
-            </div>
-            <div class="infra-card">
-              <h3>الالتزام</h3>
-              <p>
-                نحترم جداولنا الزمنية ونلتزم بأعلى المواصفات الفنية المطلوبة في
-                كل مشروع، مهما كان حجمه.
-              </p>
-            </div>
-            <div class="infra-card">
-              <h3>الابتكار</h3>
-              <p>
-                ندمج بين التقنيات الحديثة في التصنيع وبين اللمسات الفنية
-                التقليدية لنقدم حلولاً معمارية فريدة.
-              </p>
-            </div>
-          </div>
+          <p
+            class="hero-subtitle"
+            style="
+              opacity: 1 !important;
+              transform: none !important;
+              max-width: 600px;
+              margin: 0 auto;
+              color: var(--text-muted);
+              text-align: center;
+            "
+          >
+            نبني الثقة ونرتقي بمعايير الجودة في توريد وتركيب الرخام والجرانيت،
+            لنحول رؤيتك إلى واقع ملموس يعكس الفخامة.
+          </p>
         </div>
       </section>
+      <main class="main-content">
+        <section class="about-section" style="padding: 80px 0">
+          <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center">
+              <h2 style="margin-bottom: 20px">نصنع الفخامة منذ 1998</h2>
+              <p
+                style="
+                  color: var(--text-muted);
+                  font-size: 1.1rem;
+                  line-height: 1.8;
+                "
+              >
+                نحن في زهرة الفلاح، لا نقوم فقط بتوريد الرخام والجرانيت، بل نصيغ
+                الفخامة في كل تفاصيل مشروعك. على مدى أكثر من عقدين، قمنا بدمج
+                الابتكار، والمهارة اليدوية، وأحدث التقنيات لنرتقي بمفهوم
+                التشطيبات والديكورات الداخلية والخارجية. رؤيتنا ليست مجرد تنفيذ
+                مشروع، بل ترك بصمة من الجمال والصلابة التي تدوم طويلاً.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="infrastructure-section"
+          style="padding: 80px 0; background-color: #0f0f0f"
+        >
+          <div class="container">
+            <div
+              class="section-header"
+              style="text-align: center; margin-bottom: 50px"
+            >
+              <h2 style="color: var(--accent-gold)">قدراتنا التشغيلية</h2>
+              <p>
+                سلسلة توريد متكاملة، من استيراد الحجر إلى أدق تفاصيل التركيب.
+              </p>
+            </div>
+            <div class="infrastructure-grid">
+              <div class="infra-card">
+                <h3>المصنع والصناعة</h3>
+                <p>
+                  مصنع مجهز بأحدث آلات القص والتلميع والتفصيل، يديره فريق من
+                  المهندسين لضمان دقة التنفيذ.
+                </p>
+              </div>
+              <div class="infra-card">
+                <h3>المخازن والمستودعات</h3>
+                <p>
+                  مساحات واسعة لتجميع وتخزين أجود أنواع الرخام والجرانيت، مما
+                  يضمن سرعة التوريد للمشاريع الكبرى.
+                </p>
+              </div>
+              <div class="infra-card">
+                <h3>المعرض</h3>
+                <p>
+                  وجهة للعملاء على شارع التخصصي لاستكشاف واختيار الأحجار
+                  الطبيعية والصناعية المناسبة لمشاريعهم.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="about-section" style="padding: 80px 0">
+          <div class="container">
+            <div
+              class="section-header"
+              style="text-align: center; margin-bottom: 50px"
+            >
+              <h2>من الرؤية إلى الواقع</h2>
+            </div>
+            <div class="infrastructure-grid">
+              <div class="infra-card">
+                <h3>01. الاستشارة</h3>
+                <p>
+                  نبدأ بزيارة موقعك لفهم رؤيتك المعمارية وتحديد المواد التي تخدم
+                  تطلعاتك.
+                </p>
+              </div>
+              <div class="infra-card">
+                <h3>02. اختيار المواد</h3>
+                <p>
+                  تفضل بزيارة معرضنا للاطلاع على مجموعتنا واختيار ما يناسب ذوقك
+                  وتصميمك.
+                </p>
+              </div>
+              <div class="infra-card">
+                <h3>03. التصنيع</h3>
+                <p>
+                  يتم قص وصقل وتفصيل الحجر داخل مصنعنا وفق مقاسات دقيقة جداً.
+                </p>
+              </div>
+              <div
+                class="infra-card"
+                style="border: 2px solid var(--accent-gold)"
+              >
+                <h3 style="color: var(--accent-gold)">04. الفحص والجودة</h3>
+                <p>
+                  مراقبة ومعاينة كل مرحلة بعناية قبل التركيب لضمان خلو المنتج
+                  النهائي من أي عيوب.
+                </p>
+              </div>
+              <div class="infra-card">
+                <h3>05. التركيب</h3>
+                <p>
+                  يتولى فريقنا المحترف التركيب بأعلى معايير الجودة، مع إشراف
+                  دائم لضمان النتيجة المثالية.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="cta-section">
+          <div class="container cta-content">
+            <h2>هل أنت مستعد لبدء مشروعك القادم؟</h2>
+            <p>
+              دعنا نناقش متطلبات مشروعك، وسنقدم لك حلولاً تجمع بين الجودة
+              والفخامة والدقة في التنفيذ.
+            </p>
+            <a href="contact-us.html" class="btn-primary">اطلب عرض سعر الآن</a>
+          </div>
+        </section>
+      </main>
     </main>
     <footer class="site-footer">
       <div class="container">
@@ -116,7 +263,6 @@
               <li><a href="contact-us.html">تواصل معنا</a></li>
             </ul>
           </div>
-
           <div class="footer-col">
             <h3>خدماتنا</h3>
             <ul class="footer-links">
@@ -126,7 +272,6 @@
               <li><a href="#">ديكورات السلالم والارضيات</a></li>
             </ul>
           </div>
-
           <div class="footer-col">
             <h3>تواصل معنا</h3>
             <ul class="footer-links">
@@ -140,7 +285,6 @@
               </li>
             </ul>
           </div>
-
           <div class="footer-col">
             <div class="footer-top-row">
               <div class="social-icons">
@@ -175,12 +319,22 @@
             </p>
           </div>
         </div>
-
         <div class="footer-bottom">
           &copy; 2026 شركة زهرة الفلاح للمقاولات. جميع الحقوق محفوظة.
         </div>
       </div>
     </footer>
+
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img
+        id="lightbox-img"
+        class="lightbox-content"
+        src=""
+        alt="Project Image"
+      />
+    </div>
+
     <script src="../assets/js/main.js"></script>
   </body>
 </html>

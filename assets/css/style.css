@@ -195,8 +195,6 @@ section {
 
   /* Modern Glassmorphism Effect */
   background: rgba(10, 10, 10, 0.7);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
   border-left: 1px solid rgba(255, 255, 255, 0.05);
 
   z-index: 1100;
@@ -1028,6 +1026,28 @@ section {
   .hero-over-title {
     justify-content: center;
   }
+  .nav-links {
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+  }
+
+  .desktop-lang {
+    display: none !important;
+  }
+
+  .catalog-grid {
+    padding: 20px 0;
+    gap: 10px;
+  }
+  .catalog-item {
+    border-radius: 0;
+  }
+  .hero-content {
+    text-align: center;
+  }
+  .hero-over-title {
+    justify-content: center;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1043,6 +1063,27 @@ section {
   .btn-primary {
     width: auto;
   }
+
+  /* --- DESKTOP LANGUAGE BUTTON --- */
+  .desktop-lang {
+    display: inline-block !important;
+    color: var(--accent-gold) !important;
+    border: 1px solid var(--accent-gold) !important;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .desktop-lang:hover {
+    background-color: transparent !important;
+    color: var(--accent-gold) !important;
+    transform: translateY(-3px); /* Lifts the button up slightly when hovered */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Adds a soft shadow underneath the lift */
+  }
+
   .flex-grid {
     flex-direction: row;
     gap: 30px;
@@ -1200,4 +1241,37 @@ section {
   .catalog-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* --- CENTERED HERO CONTENT (For Internal Pages) --- */
+.centered-hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Forces text to show, overriding the main.js animations */
+.centered-hero-content .hero-over-title,
+.centered-hero-content .hero-title,
+.centered-hero-content .hero-subtitle {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Alignment and spacing fixes */
+.centered-hero-content .hero-over-title {
+  justify-content: center;
+}
+
+.centered-hero-content .hero-title {
+  margin-bottom: 20px;
+}
+
+.centered-hero-content .hero-subtitle {
+  max-width: 600px;
+  margin-bottom: 20px;
+  color: var(--text-muted);
 }

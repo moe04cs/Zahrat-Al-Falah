@@ -9,49 +9,88 @@
   <body>
     <header class="site-header">
       <div class="mobile-overlay"></div>
-
       <div class="container header-container">
         <div class="logo">
           <a href="index.html">
             <img src="../assets/images/logo.png" alt="زهرة الفلاح" />
           </a>
         </div>
-
         <div class="mobile-controls">
           <a href="../en/index.html" class="lang-switch" dir="ltr">EN</a>
           <button class="mobile-menu-btn" aria-label="القائمة">&#9776;</button>
         </div>
-
         <nav class="nav-links">
-          <button class="close-menu-btn" aria-label="إغلاق">&times;</button>
+          <div class="mobile-menu-top">
+            <img
+              src="../assets/images/logo.png"
+              alt="زهرة الفلاح"
+              class="mobile-menu-logo"
+            />
+            <button class="close-menu-btn" aria-label="إغلاق">&times;</button>
+          </div>
 
           <a href="index.html" class="main-link">الرئيسية</a>
           <a href="about-us.html" class="main-link">من نحن</a>
           <a href="portfolio.html" class="main-link">مشاريعنا</a>
           <a href="contact-us.html" class="main-link">اتصل بنا</a>
-          <a href="../en/index.html" class="lang-switch" dir="ltr">English</a>
+
+          <a href="../en/index.html" class="lang-switch desktop-lang" dir="ltr"
+            >EN</a
+          >
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="portfolio-hero">
-        <video
-          autoplay
-          loop
-          muted
-          playsinline
-          class="hero-video"
-          poster="../assets/images/portfolio-poster.jpg"
-        >
-          <source src="../assets/images/portfolio-bg.mp4" type="video/mp4" />
-        </video>
+      <section
+        class="hero"
+        style="
+          min-height: 75vh;
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <div class="hero-bg-blackhole" id="hero-bg-blackhole">
+          <div class="vertical-gallery-wrapper" id="gallery-track">
+            <div class="gallery-column">
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+            </div>
+            <div class="gallery-column fast">
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+            </div>
+            <div class="gallery-column slow">
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+            </div>
+          </div>
+        </div>
 
         <div class="hero-overlay"></div>
 
-        <div class="container hero-content">
-          <h1 id="portfolio-heading"></h1>
-          <p id="portfolio-text"></p>
+        <div class="container hero-content centered-hero-content">
+          <div class="hero-over-title">
+            <span class="dot"></span>
+            <span>دقة · فخامة · تنفيذ · واقع</span>
+            <span class="dot"></span>
+          </div>
+
+          <h1 class="hero-title">مشاريعنا</h1>
+
+          <p class="hero-subtitle">
+            تصفح مجموعة من أبرز أعمالنا التي تعكس التزامنا بأعلى معايير الجودة
+            والاحترافية في توريد وتركيب الرخام والجرانيت.
+          </p>
         </div>
       </section>
 
@@ -246,7 +285,6 @@
               <li><a href="contact-us.html">تواصل معنا</a></li>
             </ul>
           </div>
-
           <div class="footer-col">
             <h3>خدماتنا</h3>
             <ul class="footer-links">
@@ -256,7 +294,6 @@
               <li><a href="#">ديكورات السلالم والارضيات</a></li>
             </ul>
           </div>
-
           <div class="footer-col">
             <h3>تواصل معنا</h3>
             <ul class="footer-links">
@@ -270,7 +307,6 @@
               </li>
             </ul>
           </div>
-
           <div class="footer-col">
             <div class="footer-top-row">
               <div class="social-icons">
@@ -305,21 +341,22 @@
             </p>
           </div>
         </div>
-
         <div class="footer-bottom">
           &copy; 2026 شركة زهرة الفلاح للمقاولات. جميع الحقوق محفوظة.
         </div>
       </div>
     </footer>
+
     <div id="lightbox" class="lightbox">
-      <span class="lightbox-close" aria-label="إغلاق">&times;</span>
+      <span class="lightbox-close">&times;</span>
       <img
-        class="lightbox-content"
         id="lightbox-img"
+        class="lightbox-content"
         src=""
-        alt="Full Screen Image"
+        alt="Project Image"
       />
     </div>
+
     <script src="../assets/js/main.js"></script>
   </body>
 </html>
