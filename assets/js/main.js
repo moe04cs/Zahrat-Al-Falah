@@ -1,197 +1,192 @@
-/* assets/js/main.js */
+/* =========================================
+   ZAHRAT AL FALAH - MAIN JAVASCRIPT
+   ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    /* --- 1. Absolute to Sticky Header on Scroll --- */
-    const header = document.querySelector('.site-header');
-    const heroSection = document.querySelector('.hero');
-    
-    if (header && heroSection) { // Added a quick safety check
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > heroSection.offsetHeight) {
-                header.classList.add('sticky-header');
-            } else {
-                header.classList.remove('sticky-header');
-            }
-        });
-    }
+    /* --- 1. REUSABLE TYPEWRITER EFFECT (SPEED BOOSTED) --- */
+    function initTypewriter(headingId, textId, btnSelector, headingStr, textStr) {
+        const headingEl = document.getElementById(headingId);
+        const paraEl = document.getElementById(textId);
+        const btnEl = btnSelector ? document.querySelector(btnSelector) : null;
 
-    /* --- 2. Arabic Typewriter Effect --- */
-    const headingElement = document.getElementById('hero-heading');
-    const paraElement = document.getElementById('hero-text');
-    const btnElement = document.querySelector('.hero-btn');
+        if (!headingEl || !paraEl) return;
 
-    if (headingElement && paraElement) { // Safety check to only run on the homepage
-        const headingText = "زهرة الفلاح العربية للمقاولات";
-        const paraText = "نحن نحول الأرضيات والجدران إلى قطعة فنية رائعة.";
+        headingEl.innerHTML = ""; 
+        paraEl.innerHTML = "";
+
         let i = 0;
         let j = 0;
-        const speed = 50;
+        const speed = 30; // WAS 50 - Lower is faster
 
         function typeHeading() {
-            headingElement.classList.add('typing-cursor');
-            if (i < headingText.length) {
-                headingElement.innerHTML += headingText.charAt(i);
+            headingEl.classList.add('typing-cursor');
+            if (i < headingStr.length) {
+                headingEl.innerHTML += headingStr.charAt(i);
                 i++;
                 setTimeout(typeHeading, speed);
             } else {
-                headingElement.classList.remove('typing-cursor');
-                setTimeout(typePara, 300); 
+                headingEl.classList.remove('typing-cursor');
+                setTimeout(typePara, 200); // WAS 300 - Shortened pause
             }
         }
 
         function typePara() {
-            paraElement.classList.add('typing-cursor');
-            if (j < paraText.length) {
-                paraElement.innerHTML += paraText.charAt(j);
+            paraEl.classList.add('typing-cursor');
+            if (j < textStr.length) {
+                paraEl.innerHTML += textStr.charAt(j);
                 j++;
                 setTimeout(typePara, speed);
             } else {
-                paraElement.classList.remove('typing-cursor');
-                if(btnElement) btnElement.classList.add('show');
+                paraEl.classList.remove('typing-cursor');
+                if(btnEl) btnEl.classList.add('show');
             }
         }
-
         setTimeout(typeHeading, 500);
     }
-});
 
-/* =========================================
-   SMART PORTFOLIO FILTER & LOAD MORE
-   ========================================= */
+    // Initialize Typewriters
+    initTypewriter('hero-heading', 'hero-text', '.hero-btn', "زهرة الفلاح العربية للمقاولات", "نحن نحول الأرضيات والجدران إلى قطعة فنية رائعة.");
+    initTypewriter('portfolio-heading', 'portfolio-text', null, "معرض الأعمال", "سجل حافل من الإنجازات في كبرى المشاريع بالمملكة");
+    // Initialize for the About Us Page
+    initTypewriter(
+        'about-heading', 
+        'about-text', 
+        null, 
+        "من نحن", 
+        "أكثر من عقدين من التميز في عالم الرخام والجرانيت."
+    );
 
-document.addEventListener("DOMContentLoaded", function () {
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const catalogItems = document.querySelectorAll(".catalog-item");
-  const loadMoreBtn = document.getElementById("load-more-btn");
 
-  if (filterBtns.length > 0 && catalogItems.length > 0) {
-    let currentFilter = "all";
-    let itemsToShow = 6; // How many images to show at a time
+    /* --- 2. STICKY HEADER LOGIC --- */
+    const header = document.querySelector(".site-header");
+    const heroSection = document.querySelector(".hero") || document.querySelector(".portfolio-hero");
 
-    // Core function to update the grid
-    function updateGrid() {
-      let visibleCount = 0;
-      let totalMatching = 0;
+    if (header) {
+        window.addEventListener("scroll", () => {
+            // Triggers 200px before hero ends to prevent blinking
+            let triggerHeight = heroSection ? heroSection.offsetHeight - 200 : 100;
+            if (window.scrollY > triggerHeight) {
+                header.classList.add("sticky-header");
+            } else {
+                header.classList.remove("sticky-header");
+            }
+        });
+    }
 
-      catalogItems.forEach((item) => {
-        const itemCategory = item.getAttribute("data-category");
-        const isMatch = currentFilter === "all" || currentFilter === itemCategory;
 
-        if (isMatch) {
-          totalMatching++;
-          // If we haven't reached our limit yet, show it
-          if (visibleCount < itemsToShow) {
-            item.style.display = "block";
-            // Tiny animation delay for a smooth staggered reveal
-            setTimeout(() => { item.style.opacity = "1"; }, 50);
-            visibleCount++;
-          } else {
-            // Hide items beyond the limit
-            item.style.display = "none";
-            item.style.opacity = "0";
-          }
-        } else {
-          // Hide items that don't match the category
-          item.style.display = "none";
-          item.style.opacity = "0";
+    /* --- 3. MOBILE MENU (SIDE DRAWER) --- */
+    const menuBtn = document.querySelector(".mobile-menu-btn");
+    const closeMenuBtn = document.querySelector(".close-menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+    const navOverlay = document.querySelector(".mobile-overlay");
+
+    if (menuBtn && navLinks) {
+        const toggleMenu = (open) => {
+            navLinks.classList.toggle("active", open);
+            if (navOverlay) navOverlay.classList.toggle("active", open);
+            document.body.style.overflow = open ? "hidden" : "auto";
+        };
+
+        menuBtn.addEventListener("click", () => toggleMenu(true));
+        if (closeMenuBtn) closeMenuBtn.addEventListener("click", () => toggleMenu(false));
+        if (navOverlay) navOverlay.addEventListener("click", () => toggleMenu(false));
+    }
+
+
+    /* --- 4. SMART PORTFOLIO FILTER & LOAD MORE --- */
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const catalogItems = document.querySelectorAll(".catalog-item");
+    const loadMoreBtn = document.getElementById("load-more-btn");
+
+    if (filterBtns.length > 0 && catalogItems.length > 0) {
+        let currentFilter = "all";
+        let itemsToShow = 6;
+
+        function updateGrid() {
+            let visibleCount = 0;
+            let totalMatching = 0;
+
+            catalogItems.forEach((item) => {
+                const isMatch = currentFilter === "all" || currentFilter === item.getAttribute("data-category");
+                if (isMatch) {
+                    totalMatching++;
+                    if (visibleCount < itemsToShow) {
+                        item.style.display = "block";
+                        setTimeout(() => { item.style.opacity = "1"; }, 50);
+                        visibleCount++;
+                    } else {
+                        item.style.display = "none";
+                        item.style.opacity = "0";
+                    }
+                } else {
+                    item.style.display = "none";
+                    item.style.opacity = "0";
+                }
+            });
+
+            if (loadMoreBtn) loadMoreBtn.style.display = totalMatching > itemsToShow ? "inline-block" : "none";
         }
-      });
 
-      // Show or hide the "Load More" button based on remaining items
-      if (totalMatching > itemsToShow) {
-        if(loadMoreBtn) loadMoreBtn.style.display = "inline-block";
-      } else {
-        if(loadMoreBtn) loadMoreBtn.style.display = "none";
-      }
+        filterBtns.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                filterBtns.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentFilter = btn.getAttribute("data-filter");
+                itemsToShow = 6;
+                updateGrid();
+
+                const gallery = document.getElementById("portfolio-gallery");
+                if (gallery) {
+                    window.scrollTo({
+                        top: gallery.getBoundingClientRect().top + window.pageYOffset - 160,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener("click", () => {
+                itemsToShow += 6;
+                updateGrid();
+            });
+        }
+
+        catalogItems.forEach(item => {
+            item.style.transition = "opacity 0.4s ease";
+            item.style.opacity = "0";
+        });
+        updateGrid();
     }
 
-    // 1. Listen for Filter Button Clicks
-    filterBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        // Update active button styling
-        filterBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
 
-        // Reset settings for the new category
-        currentFilter = btn.getAttribute("data-filter");
-        itemsToShow = 6; // Reset back to showing 6
-        
-        updateGrid();
-      });
-    });
+    /* --- 5. FULL-SCREEN LIGHTBOX --- */
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeLightboxBtn = document.querySelector(".lightbox-close");
 
-    // 2. Listen for "Load More" Button Clicks
-    if (loadMoreBtn) {
-      loadMoreBtn.addEventListener("click", () => {
-        itemsToShow += 6; // Add 6 more to the limit
-        updateGrid();
-      });
+    if (lightbox && catalogItems.length > 0) {
+        catalogItems.forEach(item => {
+            item.addEventListener("click", () => {
+                const img = item.querySelector("img");
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add("active");
+                    document.body.style.overflow = "hidden";
+                }
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove("active");
+            document.body.style.overflow = "auto";
+            setTimeout(() => { lightboxImg.src = ""; }, 300);
+        };
+
+        if (closeLightboxBtn) closeLightboxBtn.addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
     }
-
-    // 3. Run once on page load to set the initial state
-    // (We make items transparent in CSS, so JS handles the fade-in)
-    catalogItems.forEach(item => {
-        item.style.transition = "opacity 0.4s ease";
-        item.style.opacity = "0"; 
-    });
-    updateGrid();
-  }
-});
-
-/* =========================================
-   STICKY HEADER LOGIC
-   ========================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-  const header = document.querySelector(".site-header");
-  
-  // Look for either the index hero OR the portfolio hero
-  const heroSection = document.querySelector(".hero") || document.querySelector(".portfolio-hero");
-
-  if (header) {
-    window.addEventListener("scroll", () => {
-      // Determine the trigger point (the height of the hero section, or a default 100px)
-      let triggerHeight = heroSection ? heroSection.offsetHeight - 50 : 100;
-
-      // If we scrolled past the trigger point, add the sticky class
-      if (window.scrollY > triggerHeight) {
-        header.classList.add("sticky-header");
-      } else {
-        // Otherwise, remove it to go back to transparent
-        header.classList.remove("sticky-header");
-      }
-    });
-  }
-});
-
-/* =========================================
-   MOBILE MENU (SIDE DRAWER LOGIC)
-   ========================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-  const menuBtn = document.querySelector(".mobile-menu-btn");
-  const closeBtn = document.querySelector(".close-menu-btn");
-  const navLinks = document.querySelector(".nav-links");
-  const overlay = document.querySelector(".mobile-overlay");
-
-  if (menuBtn && navLinks) {
-    // 1. Open Menu
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.add("active");
-      if (overlay) overlay.classList.add("active");
-      document.body.style.overflow = "hidden"; // Prevents background scrolling
-    });
-
-    // 2. Close Menu Function
-    const closeMenu = () => {
-      navLinks.classList.remove("active");
-      if (overlay) overlay.classList.remove("active");
-      document.body.style.overflow = "auto"; // Restores scrolling
-    };
-
-    // 3. Trigger close when clicking the 'X' or the dark overlay
-    if (closeBtn) closeBtn.addEventListener("click", closeMenu);
-    if (overlay) overlay.addEventListener("click", closeMenu);
-  }
 });

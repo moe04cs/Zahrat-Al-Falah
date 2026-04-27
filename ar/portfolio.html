@@ -50,8 +50,8 @@
         <div class="hero-overlay"></div>
 
         <div class="container hero-content">
-          <h1>معرض الأعمال</h1>
-          <p>سجل حافل من الإنجازات في كبرى المشاريع بالمملكة</p>
+          <h1 id="portfolio-heading"></h1>
+          <p id="portfolio-text"></p>
         </div>
       </section>
 
@@ -72,7 +72,7 @@
         </div>
       </div>
 
-      <section style="background-color: var(--bg-primary)">
+      <section class="bg-primary-section" id="portfolio-gallery">
         <div class="catalog-grid container">
           <div class="catalog-item" id="facades" data-category="facades">
             <img
@@ -217,16 +217,8 @@
             </div>
           </div>
         </div>
-        <div
-          style="text-align: center; padding-top: 20px; padding-bottom: 20px"
-        >
-          <button
-            id="load-more-btn"
-            class="btn-primary"
-            style="display: none; width: auto; min-width: 200px"
-          >
-            تحميل المزيد
-          </button>
+        <div class="load-more-container">
+          <button id="load-more-btn" class="btn-primary">تحميل المزيد</button>
         </div>
       </section>
 
@@ -319,7 +311,15 @@
         </div>
       </div>
     </footer>
-
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close" aria-label="إغلاق">&times;</span>
+      <img
+        class="lightbox-content"
+        id="lightbox-img"
+        src=""
+        alt="Full Screen Image"
+      />
+    </div>
     <script src="../assets/js/main.js"></script>
   </body>
 </html>

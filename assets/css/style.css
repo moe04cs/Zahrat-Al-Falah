@@ -65,7 +65,7 @@ p {
 }
 
 /* =========================================
-   MOBILE-FIRST UTILITY CLASSES
+   UTILITY CLASSES
    ========================================= */
 
 .container {
@@ -78,8 +78,20 @@ section {
   padding: var(--section-padding);
 }
 
+.main-content {
+  min-height: 60vh;
+}
+
 .bg-secondary {
   background-color: var(--bg-secondary);
+}
+
+.bg-primary-section {
+  background-color: var(--bg-primary);
+}
+
+.ltr-contact-info {
+  text-align: right;
 }
 
 .btn-primary {
@@ -101,7 +113,6 @@ section {
   color: var(--bg-primary);
 }
 
-/* Base Flexbox - Stacks vertically on mobile */
 .flex-grid {
   display: flex;
   flex-direction: column;
@@ -113,7 +124,7 @@ section {
    ========================================= */
 
 .site-header {
-  position: absolute; /* Sits at the top, but scrolls away with the page */
+  position: absolute;
   background-color: transparent;
   border-bottom: 1px solid transparent;
   padding: 20px 20px;
@@ -122,13 +133,12 @@ section {
   z-index: 1000;
 }
 
-/* This class gets added by JS after the Hero section */
 .site-header.sticky-header {
-  position: fixed; /* Sticks to the top of the screen */
+  position: fixed;
   background-color: var(--bg-primary);
   border-bottom: 1px solid #333;
   padding: 15px 20px;
-  animation: slideDown 0.4s ease forwards; /* Smoothly drops down */
+  animation: slideDown 0.4s ease forwards;
 }
 
 @keyframes slideDown {
@@ -149,10 +159,6 @@ section {
 .logo img {
   height: 50px;
   display: block;
-}
-
-.nav-links {
-  display: none; /* Hidden on mobile */
 }
 
 .mobile-controls {
@@ -186,442 +192,69 @@ section {
   color: var(--bg-primary);
 }
 
-/* =========================================
-   HERO SECTION & VIDEO BACKGROUND
-   ========================================= */
-
-.hero {
-  position: relative;
-  height: 80vh; /* Takes up 100% of the screen height */
-  min-height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
-  padding: 0 20px;
-}
-
-.hero-video {
-  position: absolute;
+/* --- MOBILE MENU (70% SIDE DRAWER) --- */
+.mobile-overlay {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures video fills screen without stretching */
-  z-index: 1;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.65); /* Darkens video so text is readable */
-  z-index: 2;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.hero h1 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive sizing */
-  color: var(--accent-gold);
-  margin-bottom: 20px;
-  min-height: 80px; /* Prevents layout jumping while typing */
-}
-
-.hero p {
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  color: #ddd;
-  margin-bottom: 40px;
-  min-height: 60px;
-}
-
-/* Button fades in AFTER the typing finishes */
-.hero-btn {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1050;
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
-.hero-btn.show {
+.mobile-overlay.active {
   opacity: 1;
-  transform: translateY(0);
+  pointer-events: auto;
 }
 
-/* The Blinking Typewriter Cursor */
-.typing-cursor::after {
-  content: "|";
-  color: var(--accent-gold);
-  margin-inline-start: 5px;
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-/* =========================================
-   ABOUT INTRO & CLIENT MARQUEE
-   ========================================= */
-
-.intro-section {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 50px;
-  padding-top: 55px; /* Increased from 40px for extra breathing room */
-}
-
-.intro-section h2 {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  margin-bottom: 20px;
-}
-
-.intro-section p {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-}
-
-/* =========================================
-   CLIENT MARQUEE (Transparent & Larger)
-   ========================================= */
-
-.client-marquee {
-  /* Removed background and borders! */
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
-/* The gradient fades at the edges match the primary dark background now */
-.client-marquee::before,
-.client-marquee::after {
-  content: "";
-  position: absolute;
+.nav-links {
+  position: fixed;
   top: 0;
-  width: 120px;
-  height: 100%;
-  z-index: 2;
-}
-.client-marquee::before {
-  left: 0;
-  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
-}
-.client-marquee::after {
-  right: 0;
-  background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
-}
-
-.marquee-track {
-  display: flex;
-  align-items: center;
-  gap: 100px; /* Increased gap for larger logos */
-  width: max-content;
-  /* Increased time to 40s because 12 larger logos take more time to scroll */
-  animation: scrollLeft 40s linear infinite;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-.client-logo {
-  height: 150px; /* Much larger logos! */
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
-  filter: grayscale(100%);
-}
-
-.client-logo:hover {
-  opacity: 1;
-  filter: grayscale(0%);
-}
-
-@keyframes scrollLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* =========================================
-   OUR INFRASTRUCTURE (MODERNIZED)
-   ========================================= */
-
-.infrastructure-section {
-  background-color: #050505; /* Deep absolute black for contrast */
-  position: relative;
-  padding-top: 95px;
-  padding-bottom: 80px;
-}
-
-.section-header {
-  margin-bottom: 50px;
-}
-
-.section-header h2 {
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.section-header p {
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.infrastructure-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-}
-
-/* The Premium Card Base */
-.infra-card {
-  background: linear-gradient(145deg, #1f1f1f 0%, #121212 100%);
-  padding: 40px 30px;
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(255, 255, 255, 0.03); /* Subtle glass edge */
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
-}
-
-/* Hover Physics & Glow */
-.infra-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(197, 160, 89, 0.4);
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(197, 160, 89, 0.1);
-}
-
-/* Small Golden Icon */
-.infra-icon {
-  width: 45px;
-  height: 45px;
-  fill: var(--accent-gold);
-  margin-bottom: 25px;
-  position: relative;
-  z-index: 2;
-}
-
-/* Large Background Watermark Icon */
-.watermark-icon {
-  position: absolute;
-  top: 10px;
-  left: -15px; /* Pushes it to the far left edge in RTL */
-  width: 140px;
-  height: 140px;
-  fill: var(--text-muted);
-  opacity: 0.03; /* Barely visible by default */
-  z-index: 0;
-  transform: rotate(-10deg);
-  transition: all 0.6s ease;
-}
-
-/* Watermark reacts to hover */
-.infra-card:hover .watermark-icon {
-  opacity: 0.08;
-  fill: var(--accent-gold);
-  transform: rotate(0deg) scale(1.1);
-}
-
-/* Text Styling (Kept above the watermark) */
-.infra-card h3 {
-  color: var(--text-main);
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-  position: relative;
-  z-index: 2;
-}
-
-.infra-card p {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  line-height: 1.8;
-  position: relative;
-  z-index: 2;
-  margin-bottom: 0;
-}
-
-/* =========================================
-   FEATURED PROJECTS (3-ITEM ASYMMETRIC)
-   ========================================= */
-
-.portfolio-section {
-  background-color: var(--bg-primary);
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
-.portfolio-header {
-  margin-bottom: 40px;
-}
-
-/* Ensure the button looks great at the bottom */
-.view-all-btn-container {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.title-with-line {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.decorative-line {
-  display: inline-block;
-  width: 40px;
-  height: 2px;
-  background-color: var(--accent-gold);
-}
-
-.title-with-line h2 {
-  margin-bottom: 0;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  text-transform: uppercase;
-  color: var(--text-main);
-}
-
-.portfolio-link {
-  color: var(--accent-gold);
-  font-weight: 800;
-  text-decoration: none;
-  font-size: 0.95rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: color 0.3s ease;
-}
-
-.portfolio-link:hover {
-  color: #fff;
-}
-
-.portfolio-link svg {
-  transform: scaleX(-1);
-}
-
-/* --- THE GRID --- */
-.portfolio-grid-asymmetric {
-  display: grid;
-  grid-template-columns: 1fr; /* Mobile stacks vertically */
-  gap: 20px;
-}
-
-.portfolio-item {
-  position: relative;
-  /* Matches the gold border from your design image */
-  border: 1px solid rgba(197, 160, 89, 0.4);
-  overflow: hidden;
-  background-color: #000;
-  aspect-ratio: 4 / 3; /* Mobile default ratio */
-}
-
-.portfolio-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.85; /* Moody darkness */
-  transition:
-    transform 0.8s ease,
-    opacity 0.8s ease;
-}
-
-.portfolio-item:hover img {
-  transform: scale(1.05);
-  opacity: 1;
-}
-
-.portfolio-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%; /* Gradient on the bottom half */
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
-  padding: 30px;
+  right: -100%;
+  width: 70%;
+  max-width: 320px;
+  height: 100vh;
+  background-color: var(--bg-secondary);
+  z-index: 1100;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  pointer-events: none;
+  padding: 80px 30px 40px;
+  gap: 25px;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* White Title, Gold Subtitle to match the image */
-.portfolio-overlay h3 {
-  color: #fff;
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  margin-bottom: 5px;
+.nav-links.active {
+  right: 0;
 }
 
-.portfolio-overlay p {
+.nav-links a.main-link,
+.nav-links a.lang-switch {
+  font-size: 1.2rem;
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
   color: var(--accent-gold);
-  font-size: 0.85rem;
-  margin-bottom: 0;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 
-/* =========================================
-   BOTTOM CALL TO ACTION (CTA)
-   ========================================= */
-
-.cta-section {
-  padding: 60px 20px;
-  background-color: var(--bg-primary); /* Keeps it consistent */
-}
-
-.cta-content {
-  background-color: var(--bg-secondary); /* Slight contrast lift */
-  padding: 60px 40px;
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(197, 160, 89, 0.2); /* Subtle gold framing */
-  text-align: center;
-  max-width: 800px;
-}
-
-.cta-content h2 {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-.cta-content p {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  margin-bottom: 30px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.cta-content .btn-primary {
-  padding: 15px 40px;
-  font-size: 1.1rem;
-}
-
-/* On desktop, make the button look even more inviting */
-@media (min-width: 768px) {
-  .cta-content {
-    padding: 80px;
-  }
+.close-menu-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: var(--accent-gold);
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
 }
 
 /* =========================================
@@ -679,7 +312,6 @@ section {
   font-size: 0.75rem;
 }
 
-/* Footer: Logo & Icons */
 .footer-top-row {
   display: flex;
   align-items: center;
@@ -688,7 +320,7 @@ section {
 }
 
 .footer-logo-small {
-  height: 35px; /* Small enough to match the social buttons perfectly */
+  height: 35px;
   width: auto;
   display: block;
 }
@@ -726,102 +358,307 @@ section {
 }
 
 /* =========================================
-   DESKTOP OVERRIDES (min-width: 768px)
+   COMPONENTS: HERO & INTRO
    ========================================= */
 
-@media (min-width: 768px) {
-  :root {
-    --section-padding: 80px 20px;
-  }
+.hero {
+  position: relative;
+  height: 80vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 0 20px;
+}
 
-  p {
-    font-size: 1.1rem;
-  }
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
 
-  .btn-primary {
-    width: auto;
-  }
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 2;
+}
 
-  .flex-grid {
-    flex-direction: row;
-    gap: 30px;
-  }
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-  .flex-grid > * {
-    flex: 1;
-  }
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: var(--accent-gold);
+  margin-bottom: 20px;
+  min-height: 80px;
+}
 
-  /* Header Desktop */
-  .logo img {
-    height: 70px;
-  }
+.hero p {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: #ddd;
+  margin-bottom: 40px;
+  min-height: 60px;
+}
 
-  .mobile-menu-btn {
-    display: none;
-  }
+.hero-btn {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
 
-  .mobile-controls {
-    display: none;
-  }
+.hero-btn.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-  }
+.typing-cursor::after {
+  content: "|";
+  color: var(--accent-gold);
+  margin-inline-start: 5px;
+  animation: blink 1s step-end infinite;
+}
 
-  .nav-links a.main-link {
-    color: var(--text-main);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
   }
-
-  .nav-links a.main-link:hover {
-    color: var(--accent-gold);
-  }
-
-  .infrastructure-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Footer Desktop */
-  .footer-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+  50% {
+    opacity: 0;
   }
 }
 
-@media (min-width: 1024px) {
-  .infrastructure-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.intro-section {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  padding-top: 55px;
 }
 
-@media (min-width: 992px) {
-  .portfolio-grid-asymmetric {
-    /* Because it's RTL, the 1.6fr column is on the RIGHT */
-    grid-template-columns: 1.6fr 1fr;
-    grid-template-rows: repeat(2, 320px); /* Locks row height */
-  }
+.intro-section h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin-bottom: 20px;
+}
 
-  .portfolio-item {
-    aspect-ratio: auto;
-    height: 100%;
-  }
+.intro-section p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
 
-  /* The big image spans both rows */
-  .featured-large {
-    grid-row: 1 / span 2;
+/* =========================================
+   COMPONENTS: CLIENT MARQUEE
+   ========================================= */
+
+.client-marquee {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.client-marquee::before,
+.client-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+}
+
+.client-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
+}
+
+.client-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  width: max-content;
+  animation: scrollLeft 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.client-logo {
+  height: 150px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.client-logo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 
 /* =========================================
-   PORTFOLIO PAGE (HERO & FILTERS)
+   COMPONENTS: INFRASTRUCTURE
    ========================================= */
 
-/* A shorter hero so users get to the catalog faster */
+.infrastructure-section {
+  background-color: #050505;
+  position: relative;
+  padding-top: 95px;
+  padding-bottom: 80px;
+}
+
+.section-header {
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.infrastructure-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.infra-card {
+  background: linear-gradient(145deg, #1f1f1f 0%, #121212 100%);
+  padding: 40px 30px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.infra-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(197, 160, 89, 0.4);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(197, 160, 89, 0.1);
+}
+
+.infra-icon {
+  width: 45px;
+  height: 45px;
+  fill: var(--accent-gold);
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 2;
+}
+
+.watermark-icon {
+  position: absolute;
+  top: 10px;
+  left: -15px;
+  width: 140px;
+  height: 140px;
+  fill: var(--text-muted);
+  opacity: 0.03;
+  z-index: 0;
+  transform: rotate(-10deg);
+  transition: all 0.6s ease;
+}
+
+.infra-card:hover .watermark-icon {
+  opacity: 0.08;
+  fill: var(--accent-gold);
+  transform: rotate(0deg) scale(1.1);
+}
+
+.infra-card h3 {
+  color: var(--text-main);
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.infra-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0;
+}
+
+/* =========================================
+   COMPONENTS: PORTFOLIO & CATALOG
+   ========================================= */
+
+.portfolio-section {
+  background-color: var(--bg-primary);
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.portfolio-header {
+  margin-bottom: 40px;
+}
+
+.title-with-line {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.decorative-line {
+  display: inline-block;
+  width: 40px;
+  height: 2px;
+  background-color: var(--accent-gold);
+}
+
+.title-with-line h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+.view-all-btn-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Specific to Portfolio Page */
 .portfolio-hero {
   position: relative;
   height: 60vh;
@@ -839,25 +676,23 @@ section {
   margin-bottom: 15px;
 }
 
-/* The Sticky Filter Bar */
 .portfolio-filter-bar {
   background-color: var(--bg-primary);
   border-bottom: 1px solid #333;
   padding: 20px 0;
   position: sticky;
-  top: 80px; /* Sticks just below your fixed navigation header */
+  top: 80px;
   z-index: 100;
 }
 
 .filter-container {
   display: flex;
   gap: 15px;
-  overflow-x: auto; /* Allows swiping on mobile */
-  padding-bottom: 10px; /* Room for scrollbar */
-  scrollbar-width: none; /* Hides scrollbar in Firefox */
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none;
 }
 
-/* Hides scrollbar in Chrome/Safari */
 .filter-container::-webkit-scrollbar {
   display: none;
 }
@@ -872,8 +707,11 @@ section {
   font-family: var(--font-ar);
   font-weight: 600;
   cursor: pointer;
-  white-space: nowrap; /* Prevents text from breaking into two lines */
+  white-space: nowrap;
   transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
 .filter-btn:hover,
@@ -883,82 +721,388 @@ section {
   border-color: var(--accent-gold);
 }
 
-/* Edge-to-Edge Mobile Grid */
+/* Grids */
+#portfolio-gallery {
+  padding-top: 10px !important; /* Removes massive default section padding */
+  padding-bottom: 0 !important;
+}
+.portfolio-grid-asymmetric {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
 .catalog-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  padding: 40px 0;
+  padding: 20px 0 !important;
+}
+
+.portfolio-item,
+.catalog-item {
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.portfolio-item {
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  aspect-ratio: 4 / 3;
 }
 
 .catalog-item {
-  position: relative;
   aspect-ratio: 4 / 3;
-  overflow: hidden;
 }
 
-/* Mobile Edge-to-Edge Override */
+.portfolio-item img,
+.catalog-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  transition:
+    transform 0.8s ease,
+    opacity 0.8s ease;
+}
+
+.portfolio-item:hover img,
+.catalog-item:hover img {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.portfolio-overlay h3 {
+  color: #fff;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  margin-bottom: 5px;
+}
+
+.portfolio-overlay p {
+  color: var(--accent-gold);
+  font-size: 0.85rem;
+  margin-bottom: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Load More Elements */
+.load-more-container {
+  text-align: center;
+  padding-top: 0 !important;
+  padding-bottom: 30px !important; /* Tightens the space right before the dark CTA box */
+}
+
+#load-more-btn {
+  display: none;
+  width: auto;
+  min-width: 200px;
+}
+
+/* =========================================
+   COMPONENTS: CALL TO ACTION (CTA)
+   ========================================= */
+
+.cta-section {
+  padding: 40px 20px;
+  background-color: var(--bg-primary);
+}
+
+.cta-content {
+  background-color: var(--bg-secondary);
+  padding: 40px 20px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.cta-content p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-content .btn-primary {
+  padding: 15px 40px;
+  font-size: 1.1rem;
+}
+
+/* =========================================
+   COMPONENTS: LIGHTBOX
+   ========================================= */
+
+.lightbox {
+  display: flex;
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  position: fixed;
+  z-index: 9999; /* Forces it to sit on top of everything, including sticky headers */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.92); /* Deep dark overlay */
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.lightbox.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--border-radius); /* Keeps the slightly rounded corners */
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7); /* Slightly darkened the shadow for depth */
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lightbox.active .lightbox-content {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: var(--text-muted);
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 10000;
+  line-height: 1;
+}
+
+.lightbox-close:hover {
+  color: var(--accent-gold);
+}
+
+/* Make sure mobile users know they can tap the images */
+.catalog-item {
+  cursor: pointer;
+}
+
+/* =========================================
+   COMPONENTS: ABOUT PAGE
+   ========================================= */
+
+.about-section {
+  padding: 80px 20px;
+  background-color: var(--bg-primary);
+}
+
+.about-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--accent-gold);
+}
+
+.about-info h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.about-info p {
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    flex-direction: row;
+    gap: 60px;
+  }
+  .about-image,
+  .about-info {
+    flex: 1;
+  }
+}
+
+/* =========================================
+   MEDIA QUERIES (RESPONSIVE OVERRIDES)
+   ========================================= */
+
+/* Mobile Edge-to-Edge Adjustments */
 @media (max-width: 767px) {
   .catalog-grid {
     padding: 20px 0;
-    gap: 10px; /* Tighter gap on mobile */
+    gap: 10px;
   }
   .catalog-item {
-    border-radius: 0; /* Removes rounded corners so it touches screen edge */
+    border-radius: 0;
   }
 }
 
-/* Desktop Grid Override */
+/* Desktop Defaults */
 @media (min-width: 768px) {
+  :root {
+    --section-padding: 80px 20px;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+
+  .btn-primary {
+    width: auto;
+  }
+
+  .flex-grid {
+    flex-direction: row;
+    gap: 30px;
+  }
+  .flex-grid > * {
+    flex: 1;
+  }
+
+  /* Header & Navigation Fixes */
+  .logo img {
+    height: 55px;
+  } /* Shrunk logo from 70px */
+
+  .mobile-menu-btn,
+  .mobile-overlay,
+  .close-menu-btn,
+  .mobile-controls {
+    display: none !important;
+  }
+
+  .nav-links {
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    flex-direction: row;
+    padding: 0;
+    gap: 30px !important; /* Reduced gap to prevent wrapping */
+    box-shadow: none;
+    right: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Force the font size down from the mobile 1.2rem */
+  .nav-links a.main-link,
+  .nav-links a.lang-switch {
+    font-size: 1rem !important;
+    white-space: nowrap !important; /* This acts as your shield */
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+
+  .nav-links a.main-link:hover {
+    color: var(--accent-gold);
+  }
+
+  /* Structural Fixes */
+  .infrastructure-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .cta-content {
+    padding: 50px 40px !important;
+  }
+
   .catalog-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .catalog-item {
     border-radius: var(--border-radius);
   }
-}
-@media (min-width: 1024px) {
-  .catalog-grid {
-    grid-template-columns: repeat(3, 1fr);
+
+  .footer-grid {
+    display: grid !important;
+    grid-template-columns: repeat(
+      4,
+      1fr
+    ) !important; /* Forces 4 equal columns */
+    gap: 20px;
+    align-items: start;
   }
 }
 
-/* =========================================
-   PORTFOLIO PAGE (DESKTOP ENHANCEMENTS)
-   ========================================= */
-
+/* Large Desktop */
 @media (min-width: 992px) {
-  /* 1. Center the Filter Buttons & Make Them Larger */
+  /* Portfolio Filters */
   .portfolio-filter-bar {
-    top: 100px;
-    padding: 30px 0;
+    top: 85px; /* Adjusted to stick perfectly under the new smaller header */
+    padding: 15px 0; /* Cut padding in half for a thinner bar */
   }
 
   .filter-container {
-    justify-content: center; /* Centers the buttons on large screens */
+    justify-content: center;
     gap: 25px;
-    overflow-x: visible; /* No need to swipe on desktop */
+    overflow-x: visible;
   }
 
   .filter-btn {
-    padding: 10px 35px;
-    font-size: 1.1rem; /* Slightly larger text */
+    padding: 8px 25px; /* Smaller buttons */
+    font-size: 1rem; /* Smaller text */
   }
 
-  /* 2. Give the Grid More Breathing Room */
+  /* Catalog Grid Cinematic Hover */
   .catalog-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px; /* Wider gaps look much more high-end */
+    gap: 30px;
     padding: 60px 0;
+    padding-top: 30px !important;
   }
 
-  /* 3. Cinematic Mouse-Hover Effects */
+  .load-more-container {
+    padding-top: 20px !important; /* NEW: Added top spacing for desktop */
+    padding-bottom: 40px !important;
+  }
+
   .catalog-item {
-    border-radius: var(--border-radius);
-    cursor: pointer; /* Changes the mouse to a hand icon */
+    cursor: pointer;
   }
 
-  /* Make the zoom slightly more dramatic on desktop */
   .catalog-item img {
     transition:
       transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -969,11 +1113,10 @@ section {
     transform: scale(1.08);
   }
 
-  /* The text slides up smoothly when the mouse enters the image */
   .portfolio-overlay {
-    height: 70%; /* Taller gradient for better reading */
+    height: 70%;
     padding: 40px 30px;
-    transform: translateY(15px); /* Pushes the text down initially */
+    transform: translateY(15px);
     opacity: 0.9;
     transition:
       transform 0.4s ease,
@@ -981,101 +1124,32 @@ section {
   }
 
   .catalog-item:hover .portfolio-overlay {
-    transform: translateY(0); /* Slides up to its normal position */
+    transform: translateY(0);
     opacity: 1;
   }
-}
 
-/* =========================================
-   MOBILE MENU (70% SIDE DRAWER)
-   ========================================= */
-
-/* The dark background that covers the rest of the screen */
-.mobile-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1050; /* Just below the menu */
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.mobile-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* The Sliding Drawer */
-.nav-links {
-  position: fixed;
-  top: 0;
-  right: -100%; /* Hidden completely off-screen to the right */
-  width: 70%;
-  max-width: 320px; /* Prevents it from getting too wide on tablets */
-  height: 100vh;
-  background-color: var(--bg-secondary); /* Dark gray background */
-  z-index: 1100; /* Highest priority */
-  display: flex;
-  flex-direction: column;
-  padding: 80px 30px 40px;
-  gap: 25px;
-  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
-  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide */
-}
-
-.nav-links.active {
-  right: 0; /* Slides into view */
-}
-
-/* Mobile Link Styling */
-.nav-links a.main-link,
-.nav-links a.lang-switch {
-  font-size: 1.2rem;
-  color: var(--text-main);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: var(--accent-gold);
-}
-
-/* The X Button */
-.close-menu-btn {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  background: none;
-  border: none;
-  color: var(--accent-gold);
-  font-size: 2.5rem;
-  cursor: pointer;
-  line-height: 1;
-}
-
-/* --- IMPORTANT: DESKTOP OVERRIDE --- */
-@media (min-width: 768px) {
-  /* Hide the mobile-only elements */
-  .mobile-overlay,
-  .close-menu-btn {
-    display: none !important;
+  /* Asymmetric Home Grid */
+  .portfolio-grid-asymmetric {
+    grid-template-columns: 1.6fr 1fr;
+    grid-template-rows: repeat(2, 320px);
   }
 
-  /* Reset the drawer back into a standard horizontal navigation */
-  .nav-links {
-    position: static;
-    width: auto;
-    height: auto;
-    background-color: transparent;
-    flex-direction: row;
-    padding: 0;
-    gap: 30px;
-    box-shadow: none;
-    right: 0;
+  .portfolio-item {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  .featured-large {
+    grid-row: 1 / span 2;
+  }
+}
+
+/* Extra Large Screens */
+@media (min-width: 1024px) {
+  .infrastructure-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .catalog-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
