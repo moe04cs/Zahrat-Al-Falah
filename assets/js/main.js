@@ -4,59 +4,56 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    /* --- 1. REUSABLE TYPEWRITER EFFECT (SPEED BOOSTED) --- */
-    function initTypewriter(headingId, textId, btnSelector, headingStr, textStr) {
+    /* --- 1. REUSABLE TYPEWRITER EFFECT (STAGGERED REVEAL FIX) --- */
+    function initTypewriter(headingId, textId, btnSelector, headingStr) {
         const headingEl = document.getElementById(headingId);
+        const overTitleEl = document.getElementById("hero-overtitle");
+        const establishedEl = document.getElementById("hero-established");
         const paraEl = document.getElementById(textId);
         const btnEl = btnSelector ? document.querySelector(btnSelector) : null;
 
-        if (!headingEl || !paraEl) return;
+        if (!headingEl) return;
 
         headingEl.innerHTML = ""; 
-        paraEl.innerHTML = "";
 
         let i = 0;
-        let j = 0;
-        const speed = 30; // WAS 50 - Lower is faster
+        const speed = 50; 
 
         function typeHeading() {
             headingEl.classList.add('typing-cursor');
-            if (i < headingStr.length) {
-                headingEl.innerHTML += headingStr.charAt(i);
+            
+            if (i <= headingStr.length) {
+                headingEl.innerHTML = headingStr.substring(0, i);
                 i++;
                 setTimeout(typeHeading, speed);
             } else {
                 headingEl.classList.remove('typing-cursor');
-                setTimeout(typePara, 200); // WAS 300 - Shortened pause
+                
+                // FIX: Colorize "تحفة فنية" and break to a new line on desktop!
+                headingEl.innerHTML = headingStr.replace("تحفة فنية", "<br class='desktop-break'><span class='gold-text'>تحفة فنية</span>");
+                
+                // STAGGERED WATERFALL ANIMATION
+                setTimeout(() => { if (overTitleEl) overTitleEl.classList.add('show'); }, 100);
+                setTimeout(() => { if (establishedEl) establishedEl.classList.add('show'); }, 300);
+                setTimeout(() => { if (paraEl) paraEl.classList.add('show'); }, 500);
+                setTimeout(() => { if (btnEl) btnEl.classList.add('show'); }, 700);
             }
         }
-
-        function typePara() {
-            paraEl.classList.add('typing-cursor');
-            if (j < textStr.length) {
-                paraEl.innerHTML += textStr.charAt(j);
-                j++;
-                setTimeout(typePara, speed);
-            } else {
-                paraEl.classList.remove('typing-cursor');
-                if(btnEl) btnEl.classList.add('show');
-            }
-        }
+        
         setTimeout(typeHeading, 500);
     }
 
-    // Initialize Typewriters
-    initTypewriter('hero-heading', 'hero-text', '.hero-btn', "زهرة الفلاح العربية للمقاولات", "نحن نحول الأرضيات والجدران إلى قطعة فنية رائعة.");
+    // Initialize for Portfolio Page (if it exists)
     initTypewriter('portfolio-heading', 'portfolio-text', null, "معرض الأعمال", "سجل حافل من الإنجازات في كبرى المشاريع بالمملكة");
-    // Initialize for the About Us Page
+    
+    // Initialize for the Home Page
     initTypewriter(
-        'about-heading', 
-        'about-text', 
-        null, 
-        "من نحن", 
-        "أكثر من عقدين من التميز في عالم الرخام والجرانيت."
+        'hero-heading', 
+        'hero-text', 
+        '.hero-btn', 
+        "نحول الحجارة إلى تحفة فنية", 
+        "توريد وتركيب الحجر والرخام والجرانيت والديكورات الداخلية والواجهات الخارجية — للفلل الخاصة، والقصور، والمباني التجارية، والمشاريع الكبرى في جميع أنحاء المملكة."
     );
-
 
     /* --- 2. STICKY HEADER LOGIC --- */
     const header = document.querySelector(".site-header");
@@ -64,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (header) {
         window.addEventListener("scroll", () => {
-            // Triggers 200px before hero ends to prevent blinking
             let triggerHeight = heroSection ? heroSection.offsetHeight - 200 : 100;
             if (window.scrollY > triggerHeight) {
                 header.classList.add("sticky-header");
@@ -73,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
 
     /* --- 3. MOBILE MENU (SIDE DRAWER) --- */
     const menuBtn = document.querySelector(".mobile-menu-btn");
@@ -92,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (closeMenuBtn) closeMenuBtn.addEventListener("click", () => toggleMenu(false));
         if (navOverlay) navOverlay.addEventListener("click", () => toggleMenu(false));
     }
-
 
     /* --- 4. SMART PORTFOLIO FILTER & LOAD MORE --- */
     const filterBtns = document.querySelectorAll(".filter-btn");
@@ -161,7 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateGrid();
     }
 
-
     /* --- 5. FULL-SCREEN LIGHTBOX --- */
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
@@ -189,4 +182,40 @@ document.addEventListener('DOMContentLoaded', () => {
         lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
         document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
     }
-});
+
+    /* --- 6. CINEMATIC WATERFALL DIRECTOR --- */
+    const track = document.getElementById('gallery-track');
+    const focusOverlay = document.getElementById('blackhole-focus');
+    const focusImg = document.getElementById('focus-img');
+
+    if (track && focusOverlay && focusImg) {
+        const images = track.querySelectorAll('img');
+        
+        if (images.length > 0) {
+            const uniqueImageCount = images.length / 2;
+
+            function triggerCinematicFocus() {
+                const randomIdx = Math.floor(Math.random() * uniqueImageCount);
+                const selectedImg = images[randomIdx];
+
+                track.classList.add('paused');
+
+                focusImg.src = selectedImg.src;
+                focusOverlay.classList.add('active');
+
+                setTimeout(() => {
+                    focusOverlay.classList.remove('active');
+                    setTimeout(() => {
+                        track.classList.remove('paused');
+                    }, 1500);
+                }, 4000); 
+            }
+
+            setTimeout(() => {
+                triggerCinematicFocus();
+                setInterval(triggerCinematicFocus, 10000);
+            }, 2000);
+        }
+    }
+
+}); // END OF DOM CONTENT LOADED

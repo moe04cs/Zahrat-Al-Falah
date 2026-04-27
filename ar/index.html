@@ -9,45 +9,96 @@
   <body>
     <header class="site-header">
       <div class="mobile-overlay"></div>
-
       <div class="container header-container">
         <div class="logo">
           <a href="index.html">
             <img src="../assets/images/logo.png" alt="زهرة الفلاح" />
           </a>
         </div>
-
         <div class="mobile-controls">
           <a href="../en/index.html" class="lang-switch" dir="ltr">EN</a>
           <button class="mobile-menu-btn" aria-label="القائمة">&#9776;</button>
         </div>
-
         <nav class="nav-links">
-          <button class="close-menu-btn" aria-label="إغلاق">&times;</button>
+          <div class="mobile-menu-top">
+            <img
+              src="../assets/images/logo.png"
+              alt="زهرة الفلاح"
+              class="mobile-menu-logo"
+            />
+            <button class="close-menu-btn" aria-label="إغلاق">&times;</button>
+          </div>
 
           <a href="index.html" class="main-link">الرئيسية</a>
           <a href="about-us.html" class="main-link">من نحن</a>
           <a href="portfolio.html" class="main-link">مشاريعنا</a>
           <a href="contact-us.html" class="main-link">اتصل بنا</a>
-          <a href="../en/index.html" class="lang-switch" dir="ltr">English</a>
         </nav>
       </div>
     </header>
 
     <main class="main-content">
       <section class="hero">
-        <video autoplay loop muted playsinline class="hero-video">
-          <source src="../assets/images/hero-bg.mp4" type="video/mp4" />
-        </video>
+        <div class="hero-bg-blackhole" id="hero-bg-blackhole">
+          <div class="vertical-gallery-wrapper" id="gallery-track">
+            <div class="gallery-column">
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+            </div>
+            <div class="gallery-column fast">
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+            </div>
+            <div class="gallery-column slow">
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+              <img src="../assets/images/project2.jpg" alt="Granite" />
+              <img src="../assets/images/project4.jpg" alt="Interior" />
+              <img src="../assets/images/project1.jpg" alt="Marble" />
+              <img src="../assets/images/project3.jpg" alt="Facade" />
+            </div>
+          </div>
+          <div class="blackhole-focus" id="blackhole-focus">
+            <img id="focus-img" src="" alt="Focused Project" />
+          </div>
+        </div>
 
         <div class="hero-overlay"></div>
 
         <div class="container hero-content">
-          <h1 id="hero-heading"></h1>
-          <p id="hero-text"></p>
-          <a href="portfolio.html" class="btn-primary hero-btn">شاهد أعمالنا</a>
+          <div class="hero-over-title" id="hero-overtitle">
+            حجر · رخام · جرانيت · واجهات
+          </div>
+          <h1 class="hero-title" id="hero-heading"></h1>
+          <div class="hero-established" id="hero-established">
+            تأسست عام <span class="gold-text">1998</span> &nbsp;•&nbsp; الرياض،
+            المملكة العربية السعودية
+          </div>
+          <p class="hero-subtitle" id="hero-text">
+            توريد وتركيب الحجر والرخام والجرانيت والديكورات الداخلية والواجهات
+            الخارجية — للفلل الخاصة، والقصور، والمباني التجارية، والمشاريع
+            الكبرى في جميع أنحاء المملكة.
+          </p>
+          <a href="contact-us.html" class="btn-primary hero-btn"
+            >احجز استشارتك المجانية</a
+          >
         </div>
       </section>
+
       <section>
         <div class="intro-section">
           <h2>نصنع الفخامة في كل زاوية</h2>
@@ -58,140 +109,78 @@
             الرقي والصلابة.
           </p>
         </div>
-
         <div class="client-marquee" dir="ltr">
           <div class="marquee-track">
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 1"
+              src="../assets/images/clients/client-1.jpg"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 2"
+              src="../assets/images/clients/client-2.jpg"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 3"
+              src="../assets/images/clients/client-3.jpg"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 4"
+              src="../assets/images/clients/client-4.png"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 5"
+              src="../assets/images/clients/client-5.png"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 6"
+              src="../assets/images/clients/client-6.jpg"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 1"
+              src="../assets/images/clients/client-7.png"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 2"
+              src="../assets/images/clients/client-8.jpg"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 3"
+              src="../assets/images/clients/client-9.jpg"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 4"
+              src="../assets/images/clients/client-10.png"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 5"
+              src="../assets/images/clients/client-11.jpg"
+              alt="Client"
               class="client-logo"
             />
             <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 6"
-              class="client-logo"
-            />
-
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 1"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 2"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 3"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 4"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 5"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 6"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 1"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 2"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 3"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 4"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 5"
-              class="client-logo"
-            />
-            <img
-              src="../assets/images/clients/client-1.png"
-              alt="Client 6"
+              src="../assets/images/clients/client-12.jpg"
+              alt="Client"
               class="client-logo"
             />
           </div>
         </div>
       </section>
+
       <section class="infrastructure-section">
         <div class="container">
           <div class="section-header">
             <h2>البنية التحتية والقدرات</h2>
             <p>سلسلة توريد متكاملة من المحاجر العالمية إلى التركيب الدقيق.</p>
           </div>
-
           <div class="infrastructure-grid">
             <div class="infra-card">
               <svg class="infra-icon" viewBox="0 0 24 24">
@@ -204,14 +193,12 @@
                   d="M2 22h20v-2H2v2zm2-4h16V6h-4.586l-2.707-2.707A.996.996 0 0 0 12 3H6a1 1 0 0 0-1 1v14zm2-13h5.586l2.707 2.707A.996.996 0 0 0 13 8h5v10H6V5zm3 4h2v6H9V9zm4 0h2v6h-2V9z"
                 />
               </svg>
-
               <h3>المصنع والصناعة</h3>
               <p>
                 تمتلك الشركة مصنع رخام مجهز بأحدث آلات القص والتلميع والتفصيل،
                 ويشرف عليه مهندسين لضمان دقة التنفيذ وجودة المنتج النهائي.
               </p>
             </div>
-
             <div class="infra-card">
               <svg class="infra-icon" viewBox="0 0 24 24">
                 <path
@@ -223,14 +210,12 @@
                   d="M4 22h16a1 1 0 0 0 1-1V9.414a1 1 0 0 0-.293-.707l-8-8a1 1 0 0 0-1.414 0l-8 8A1 1 0 0 0 3 9.414V21a1 1 0 0 0 1 1zM14 16h-4v-4h4v4zM5 10.828l7-7 7 7V20h-3v-4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v4H5v-9.172z"
                 />
               </svg>
-
               <h3>المخازن والمستودعات</h3>
               <p>
                 مناطق تخزين وتجميع لجميع أنواع الرخام والجرانيت والحجر، مما يسمح
                 لنا بتوريد وتأمين جميع إحتياجات المشاريع بسرعة ودقة عالية.
               </p>
             </div>
-
             <div class="infra-card">
               <svg class="infra-icon" viewBox="0 0 24 24">
                 <path
@@ -242,14 +227,12 @@
                   d="M21 4H3a1 1 0 0 0-1 1v2.518a4.015 4.015 0 0 0 1.535 3.161L4 18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2l.465-7.321A4.015 4.015 0 0 0 22 7.518V5a1 1 0 0 0-1-1zM4.043 6h15.914v1.518a2.008 2.008 0 0 1-2 2 2 2 0 0 1-2-2V6h-2v1.518a2 2 0 0 1-4 0V6H7.957v1.518a2 2 0 0 1-4 0V6zM18 18H6l-.382-6h12.764L18 18z"
                 />
               </svg>
-
               <h3>المعرض والمبيعات</h3>
               <p>
                 تمتلك زهرة الفالح معرضاً بشارع التخصصي، نقوم من خلاله بعرض أجمل
                 الأحجار الطبيعية والصناعية لعملائنا لاختيار ما يناسب أذواقهم.
               </p>
             </div>
-
             <div class="infra-card">
               <svg class="infra-icon" viewBox="0 0 24 24">
                 <path
@@ -261,7 +244,6 @@
                   d="M21.707 16.293L15.34 9.926a3.99 3.99 0 0 0 .151-2.915 4.025 4.025 0 0 0-2.485-2.484 3.988 3.988 0 0 0-2.914.152L5.805 1.547a.999.999 0 0 0-1.414 0L1.547 4.391a.999.999 0 0 0 0 1.414l3.132 3.132c-.046.335-.046.678 0 1.013l-3.132 3.132a.999.999 0 0 0 0 1.414l2.844 2.844a.999.999 0 0 0 1.414 0l3.132-3.132c.335.046.678.046 1.013 0l3.132 3.132a.999.999 0 0 0 1.414 0l2.844-2.844a.999.999 0 0 0 0-1.414l-3.132-3.132a3.988 3.988 0 0 0 .152-2.914 4.025 4.025 0 0 0-2.484-2.485 3.99 3.99 0 0 0-2.915.151l-6.367-6.366z"
                 />
               </svg>
-
               <h3>التركيب والتنفيذ</h3>
               <p>
                 فريق متكامل من الحرفيين والمهندسين لضمان جودة المنتج النهائي،
@@ -271,6 +253,7 @@
           </div>
         </div>
       </section>
+
       <section class="portfolio-section">
         <div class="container">
           <div class="portfolio-header">
@@ -279,38 +262,35 @@
               <h2>أبرز أعمالنا</h2>
             </div>
           </div>
-
           <div class="portfolio-grid-asymmetric">
-            <div class="portfolio-item featured-large">
+            <div class="portfolio-item featured-large catalog-item">
               <img
                 src="https://placehold.co/1000x1200/242424/c5a059?text=Big+Project"
                 alt="تصميم الجدران والواجهات"
               />
               <div class="portfolio-overlay">
                 <h3>تصميم الجدران والواجهات</h3>
-                <p>placeholder</p>
+                <p>تفاصيل المشروع</p>
               </div>
             </div>
-
-            <div class="portfolio-item">
+            <div class="portfolio-item catalog-item">
               <img
                 src="https://placehold.co/800x600/242424/c5a059?text=Small+Top"
                 alt="تصميم الأرضيات والسلالم"
               />
               <div class="portfolio-overlay">
                 <h3>تصميم الأرضيات والسلالم</h3>
-                <p>placeholder</p>
+                <p>تفاصيل المشروع</p>
               </div>
             </div>
-
-            <div class="portfolio-item">
+            <div class="portfolio-item catalog-item">
               <img
                 src="https://placehold.co/800x600/242424/c5a059?text=Small+Bottom"
                 alt="تصميم المغاسل والحمام"
               />
               <div class="portfolio-overlay">
                 <h3>تصميم المغاسل والحمام</h3>
-                <p>placeholder</p>
+                <p>تفاصيل المشروع</p>
               </div>
             </div>
           </div>
@@ -319,6 +299,7 @@
           </div>
         </div>
       </section>
+
       <section class="cta-section">
         <div class="container cta-content">
           <h2>هل أنت مستعد لبدء مشروعك القادم؟</h2>
@@ -343,7 +324,6 @@
               <li><a href="contact-us.html">تواصل معنا</a></li>
             </ul>
           </div>
-
           <div class="footer-col">
             <h3>خدماتنا</h3>
             <ul class="footer-links">
@@ -353,7 +333,6 @@
               <li><a href="#">ديكورات السلالم والارضيات</a></li>
             </ul>
           </div>
-
           <div class="footer-col">
             <h3>تواصل معنا</h3>
             <ul class="footer-links">
@@ -367,7 +346,6 @@
               </li>
             </ul>
           </div>
-
           <div class="footer-col">
             <div class="footer-top-row">
               <div class="social-icons">
@@ -402,12 +380,22 @@
             </p>
           </div>
         </div>
-
         <div class="footer-bottom">
           &copy; 2026 شركة زهرة الفلاح للمقاولات. جميع الحقوق محفوظة.
         </div>
       </div>
     </footer>
+
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img
+        id="lightbox-img"
+        class="lightbox-content"
+        src=""
+        alt="Project Image"
+      />
+    </div>
+
     <script src="../assets/js/main.js"></script>
   </body>
 </html>
