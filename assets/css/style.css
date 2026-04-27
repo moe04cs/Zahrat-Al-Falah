@@ -845,7 +845,7 @@ section {
   border-bottom: 1px solid #333;
   padding: 20px 0;
   position: sticky;
-  top: 70px; /* Sticks just below your fixed navigation header */
+  top: 80px; /* Sticks just below your fixed navigation header */
   z-index: 100;
 }
 
@@ -920,5 +920,162 @@ section {
 @media (min-width: 1024px) {
   .catalog-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* =========================================
+   PORTFOLIO PAGE (DESKTOP ENHANCEMENTS)
+   ========================================= */
+
+@media (min-width: 992px) {
+  /* 1. Center the Filter Buttons & Make Them Larger */
+  .portfolio-filter-bar {
+    top: 100px;
+    padding: 30px 0;
+  }
+
+  .filter-container {
+    justify-content: center; /* Centers the buttons on large screens */
+    gap: 25px;
+    overflow-x: visible; /* No need to swipe on desktop */
+  }
+
+  .filter-btn {
+    padding: 10px 35px;
+    font-size: 1.1rem; /* Slightly larger text */
+  }
+
+  /* 2. Give the Grid More Breathing Room */
+  .catalog-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; /* Wider gaps look much more high-end */
+    padding: 60px 0;
+  }
+
+  /* 3. Cinematic Mouse-Hover Effects */
+  .catalog-item {
+    border-radius: var(--border-radius);
+    cursor: pointer; /* Changes the mouse to a hand icon */
+  }
+
+  /* Make the zoom slightly more dramatic on desktop */
+  .catalog-item img {
+    transition:
+      transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      opacity 0.8s ease;
+  }
+
+  .catalog-item:hover img {
+    transform: scale(1.08);
+  }
+
+  /* The text slides up smoothly when the mouse enters the image */
+  .portfolio-overlay {
+    height: 70%; /* Taller gradient for better reading */
+    padding: 40px 30px;
+    transform: translateY(15px); /* Pushes the text down initially */
+    opacity: 0.9;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+  }
+
+  .catalog-item:hover .portfolio-overlay {
+    transform: translateY(0); /* Slides up to its normal position */
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   MOBILE MENU (70% SIDE DRAWER)
+   ========================================= */
+
+/* The dark background that covers the rest of the screen */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1050; /* Just below the menu */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The Sliding Drawer */
+.nav-links {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Hidden completely off-screen to the right */
+  width: 70%;
+  max-width: 320px; /* Prevents it from getting too wide on tablets */
+  height: 100vh;
+  background-color: var(--bg-secondary); /* Dark gray background */
+  z-index: 1100; /* Highest priority */
+  display: flex;
+  flex-direction: column;
+  padding: 80px 30px 40px;
+  gap: 25px;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide */
+}
+
+.nav-links.active {
+  right: 0; /* Slides into view */
+}
+
+/* Mobile Link Styling */
+.nav-links a.main-link,
+.nav-links a.lang-switch {
+  font-size: 1.2rem;
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--accent-gold);
+}
+
+/* The X Button */
+.close-menu-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: var(--accent-gold);
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* --- IMPORTANT: DESKTOP OVERRIDE --- */
+@media (min-width: 768px) {
+  /* Hide the mobile-only elements */
+  .mobile-overlay,
+  .close-menu-btn {
+    display: none !important;
+  }
+
+  /* Reset the drawer back into a standard horizontal navigation */
+  .nav-links {
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    flex-direction: row;
+    padding: 0;
+    gap: 30px;
+    box-shadow: none;
+    right: 0;
   }
 }

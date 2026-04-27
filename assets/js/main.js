@@ -164,3 +164,34 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+/* =========================================
+   MOBILE MENU (SIDE DRAWER LOGIC)
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const menuBtn = document.querySelector(".mobile-menu-btn");
+  const closeBtn = document.querySelector(".close-menu-btn");
+  const navLinks = document.querySelector(".nav-links");
+  const overlay = document.querySelector(".mobile-overlay");
+
+  if (menuBtn && navLinks) {
+    // 1. Open Menu
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.add("active");
+      if (overlay) overlay.classList.add("active");
+      document.body.style.overflow = "hidden"; // Prevents background scrolling
+    });
+
+    // 2. Close Menu Function
+    const closeMenu = () => {
+      navLinks.classList.remove("active");
+      if (overlay) overlay.classList.remove("active");
+      document.body.style.overflow = "auto"; // Restores scrolling
+    };
+
+    // 3. Trigger close when clicking the 'X' or the dark overlay
+    if (closeBtn) closeBtn.addEventListener("click", closeMenu);
+    if (overlay) overlay.addEventListener("click", closeMenu);
+  }
+});
