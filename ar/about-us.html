@@ -41,17 +41,7 @@
       </div>
     </header>
     <main>
-      <section
-        class="hero"
-        style="
-          min-height: 60vh;
-          position: relative;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        "
-      >
+      <section class="hero internal-hero">
         <div class="hero-bg-blackhole" id="hero-bg-blackhole">
           <div class="vertical-gallery-wrapper" id="gallery-track">
             <div class="gallery-column">
@@ -76,180 +66,191 @@
         </div>
 
         <div class="hero-overlay"></div>
-        <div
-          class="container hero-content"
-          style="
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          "
-        >
-          <div
-            class="hero-over-title"
-            style="
-              opacity: 1 !important;
-              transform: none !important;
-              justify-content: center;
-            "
-          >
+
+        <div class="container hero-content centered-hero-content">
+          <div class="hero-over-title" id="hero-overtitle">
             <span class="dot"></span>
             <span>تاريخ من التميز · جودة · احترافية</span>
             <span class="dot"></span>
           </div>
 
-          <h1
-            class="hero-title"
-            style="
-              opacity: 1 !important;
-              transform: none !important;
-              margin-bottom: 20px;
-              text-align: center;
-            "
-          >
-            من نحن
-          </h1>
+          <h1 class="hero-title" id="hero-heading" data-text="من نحن"></h1>
 
-          <p
-            class="hero-subtitle"
-            style="
-              opacity: 1 !important;
-              transform: none !important;
-              max-width: 600px;
-              margin: 0 auto;
-              color: var(--text-muted);
-              text-align: center;
-            "
-          >
-            نبني الثقة ونرتقي بمعايير الجودة في توريد وتركيب الرخام والجرانيت،
-            لنحول رؤيتك إلى واقع ملموس يعكس الفخامة.
+          <div class="hero-established" id="hero-established">
+            نصنع الفخامة منذ 1998
+          </div>
+
+          <p class="hero-subtitle" id="hero-text">
+            نحن في زهرة الفلاح، لا نقوم فقط بتوريد الرخام والجرانيت، بل نصيغ
+            الفخامة في كل تفاصيل مشروعك. على مدى أكثر من عقدين، قمنا بدمج
+            الابتكار، والمهارة اليدوية، وأحدث التقنيات لنرتقي بمفهوم التشطيبات
+            والديكورات الداخلية والخارجية. رؤيتنا ليست مجرد تنفيذ مشروع، بل ترك
+            بصمة من الجمال والصلابة التي تدوم طويلاً.
           </p>
         </div>
       </section>
-      <main class="main-content">
-        <section class="about-section" style="padding: 80px 0">
-          <div class="container">
-            <div style="max-width: 800px; margin: 0 auto; text-align: center">
-              <h2 style="margin-bottom: 20px">نصنع الفخامة منذ 1998</h2>
-              <p
-                style="
-                  color: var(--text-muted);
-                  font-size: 1.1rem;
-                  line-height: 1.8;
-                "
-              >
-                نحن في زهرة الفلاح، لا نقوم فقط بتوريد الرخام والجرانيت، بل نصيغ
-                الفخامة في كل تفاصيل مشروعك. على مدى أكثر من عقدين، قمنا بدمج
-                الابتكار، والمهارة اليدوية، وأحدث التقنيات لنرتقي بمفهوم
-                التشطيبات والديكورات الداخلية والخارجية. رؤيتنا ليست مجرد تنفيذ
-                مشروع، بل ترك بصمة من الجمال والصلابة التي تدوم طويلاً.
+
+      <div class="main-content">
+        <section class="vision-goals-section">
+          <div class="container vision-goals-grid">
+            <div class="vision-block">
+              <span class="overline-text">هويتنا</span>
+              <h2 class="editorial-title">رؤيتنا</h2>
+              <p class="editorial-desc">
+                دمج الابتكار، الجودة، والكمال في عملنا اليومي هو أساس رؤيتنا —
+                للارتقاء بمفهوم توريد وتركيب الحجر، الرخام، الجرانيت،
+                والديكورات. زهرة الفلاح تصنع الفارق من خلال الالتزام بالتميز
+                المطلق.
               </p>
+            </div>
+
+            <div class="goals-block">
+              <span class="overline-text">أهدافنا</span>
+              <ul class="goals-list">
+                <li>
+                  <span class="goal-num">01</span>
+                  <p>
+                    الرعاية الكاملة بجميع متطلبات مشروع كل عميل وتحويلها إلى
+                    واقع.
+                  </p>
+                </li>
+                <li>
+                  <span class="goal-num">02</span>
+                  <p>
+                    ضمان الالتزام الصارم بالجداول الزمنية مع تحقيق أفضل جودة
+                    ممكنة.
+                  </p>
+                </li>
+                <li>
+                  <span class="goal-num">03</span>
+                  <p>
+                    مراقبة ومعاينة كل مرحلة بعناية فائقة قبل التركيب لضمان منتج
+                    نهائي خالٍ تماماً من العيوب.
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
 
-        <section
-          class="infrastructure-section"
-          style="padding: 80px 0; background-color: #0f0f0f"
-        >
+        <section class="integrated-operation-section bg-premium-grid">
           <div class="container">
-            <div
-              class="section-header"
-              style="text-align: center; margin-bottom: 50px"
-            >
-              <h2 style="color: var(--accent-gold)">قدراتنا التشغيلية</h2>
+            <div class="integrated-grid">
+              <div class="integrated-text">
+                <span class="overline-text">لماذا تختارنا</span>
+                <h2 class="editorial-title" style="margin-bottom: 30px">
+                  عملية متكاملة —<br />من المستودع إلى التركيب
+                </h2>
+                <p class="editorial-desc">
+                  تمتلك زهرة الفلاح سلسلة التوريد بالكامل: مناطق تخزين وتجميع
+                  لجميع أنواع الحجر، مصنع رخام مزود بأحدث آلات القص والصقل، معرض
+                  على شارع التخصصي، وفرق تركيب متخصصة — كل ذلك تحت سقف واحد.
+                </p>
+              </div>
+
+              <div class="integrated-cards">
+                <div class="list-card">
+                  <div class="card-header">
+                    <span class="gold-dot"></span>
+                    <h3>المستودعات والمخازن</h3>
+                  </div>
+                  <p>
+                    مناطق تخزين لجميع أنواع الرخام والجرانيت والحجر لتلبية
+                    احتياجات أي مشروع بسرعة ودقة متناهية.
+                  </p>
+                </div>
+                <div class="list-card">
+                  <div class="card-header">
+                    <span class="gold-dot"></span>
+                    <h3>التصنيع</h3>
+                  </div>
+                  <p>
+                    مصنع رخام خاص مجهز بأحدث آلات القص والصقل والتفصيل، تحت
+                    إشراف نخبة من المهندسين المؤهلين.
+                  </p>
+                </div>
+                <div class="list-card">
+                  <div class="card-header">
+                    <span class="gold-dot"></span>
+                    <h3>المعرض</h3>
+                  </div>
+                  <p>
+                    معرض متميز على شارع التخصصي يعرض أجمل وأرقى الأحجار الطبيعية
+                    والصناعية.
+                  </p>
+                </div>
+                <div class="list-card">
+                  <div class="card-header">
+                    <span class="gold-dot"></span>
+                    <h3>تركيب احترافي</h3>
+                  </div>
+                  <p>
+                    حرفيون ومهندسون يضمنون تشطيبات، وديكورات، وتكسيات خالية من
+                    العيوب — للداخل والخارج.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="process-section">
+          <div class="container">
+            <div class="process-header-wrap">
+              <span class="overline-text">كيف نعمل</span>
+              <h2 class="editorial-title">من الرؤية إلى التركيب</h2>
+            </div>
+
+            <div class="process-grid">
+              <div class="process-card">
+                <span class="step-num">01</span>
+                <h3>الاستشارة</h3>
+                <p>
+                  نقوم بزيارة موقعك، ونفهم رؤيتك، ونوصي بالمواد المناسبة من
+                  مجموعتنا.
+                </p>
+              </div>
+              <div class="process-card">
+                <span class="step-num">02</span>
+                <h3>اختيار المواد</h3>
+                <p>
+                  تفضل بزيارة معرضنا على شارع التخصصي لاختيار ما يناسبك من
+                  مجموعتنا المنتقاة.
+                </p>
+              </div>
+              <div class="process-card">
+                <span class="step-num">03</span>
+                <h3>التصنيع</h3>
+                <p>
+                  يقوم مصنعنا بقص وصقل وتفصيل الحجر بدقة متناهية لتطابق أبعاد
+                  مشروعك.
+                </p>
+              </div>
+              <div class="process-card">
+                <span class="step-num">04</span>
+                <h3>التركيب</h3>
+                <p>
+                  يقوم خبراؤنا من الحرفيين والمهندسين بالتركيب بمعايير خالية من
+                  العيوب تحت إشراف مستمر.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cta-section bg-showroom-glow">
+          <div class="container">
+            <div class="cta-content">
+              <h2>مستعد للبدء بمشروعك؟</h2>
               <p>
-                سلسلة توريد متكاملة، من استيراد الحجر إلى أدق تفاصيل التركيب.
+                تواصل معنا اليوم للحصول على استشارة مجانية وتسعير لمشروعك، ودعنا
+                نحول رؤيتك إلى واقع.
               </p>
-            </div>
-            <div class="infrastructure-grid">
-              <div class="infra-card">
-                <h3>المصنع والصناعة</h3>
-                <p>
-                  مصنع مجهز بأحدث آلات القص والتلميع والتفصيل، يديره فريق من
-                  المهندسين لضمان دقة التنفيذ.
-                </p>
-              </div>
-              <div class="infra-card">
-                <h3>المخازن والمستودعات</h3>
-                <p>
-                  مساحات واسعة لتجميع وتخزين أجود أنواع الرخام والجرانيت، مما
-                  يضمن سرعة التوريد للمشاريع الكبرى.
-                </p>
-              </div>
-              <div class="infra-card">
-                <h3>المعرض</h3>
-                <p>
-                  وجهة للعملاء على شارع التخصصي لاستكشاف واختيار الأحجار
-                  الطبيعية والصناعية المناسبة لمشاريعهم.
-                </p>
-              </div>
+              <a href="contact-us.html" class="btn-primary">اتصل بنا الآن</a>
             </div>
           </div>
         </section>
-
-        <section class="about-section" style="padding: 80px 0">
-          <div class="container">
-            <div
-              class="section-header"
-              style="text-align: center; margin-bottom: 50px"
-            >
-              <h2>من الرؤية إلى الواقع</h2>
-            </div>
-            <div class="infrastructure-grid">
-              <div class="infra-card">
-                <h3>01. الاستشارة</h3>
-                <p>
-                  نبدأ بزيارة موقعك لفهم رؤيتك المعمارية وتحديد المواد التي تخدم
-                  تطلعاتك.
-                </p>
-              </div>
-              <div class="infra-card">
-                <h3>02. اختيار المواد</h3>
-                <p>
-                  تفضل بزيارة معرضنا للاطلاع على مجموعتنا واختيار ما يناسب ذوقك
-                  وتصميمك.
-                </p>
-              </div>
-              <div class="infra-card">
-                <h3>03. التصنيع</h3>
-                <p>
-                  يتم قص وصقل وتفصيل الحجر داخل مصنعنا وفق مقاسات دقيقة جداً.
-                </p>
-              </div>
-              <div
-                class="infra-card"
-                style="border: 2px solid var(--accent-gold)"
-              >
-                <h3 style="color: var(--accent-gold)">04. الفحص والجودة</h3>
-                <p>
-                  مراقبة ومعاينة كل مرحلة بعناية قبل التركيب لضمان خلو المنتج
-                  النهائي من أي عيوب.
-                </p>
-              </div>
-              <div class="infra-card">
-                <h3>05. التركيب</h3>
-                <p>
-                  يتولى فريقنا المحترف التركيب بأعلى معايير الجودة، مع إشراف
-                  دائم لضمان النتيجة المثالية.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="cta-section">
-          <div class="container cta-content">
-            <h2>هل أنت مستعد لبدء مشروعك القادم؟</h2>
-            <p>
-              دعنا نناقش متطلبات مشروعك، وسنقدم لك حلولاً تجمع بين الجودة
-              والفخامة والدقة في التنفيذ.
-            </p>
-            <a href="contact-us.html" class="btn-primary">اطلب عرض سعر الآن</a>
-          </div>
-        </section>
-      </main>
+      </div>
     </main>
     <footer class="site-footer">
       <div class="container">

@@ -114,10 +114,17 @@ section {
 }
 .site-header.sticky-header {
   position: fixed;
-  background-color: var(--bg-primary);
-  border-bottom: 1px solid #333;
+  /* Dark, semi-transparent background */
+  background: rgba(15, 15, 15, 0.85);
+  /* The magic blur effect */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  /* Subtle light rim at the bottom */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   padding: 15px 20px;
-  animation: slideDown 0.4s ease forwards;
+  /* Smooth, bouncy drop-down animation */
+  animation: slideDown 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 @keyframes slideDown {
   from {
@@ -574,21 +581,31 @@ section {
   gap: 30px;
 }
 .infra-card {
-  background: linear-gradient(145deg, #1f1f1f 0%, #121212 100%);
+  /* Semi-transparent dark gradient allows the grid to peek through */
+  background: linear-gradient(
+    145deg,
+    rgba(30, 30, 30, 0.7) 0%,
+    rgba(15, 15, 15, 0.9) 100%
+  );
+  backdrop-filter: blur(12px); /* Blurs the grid behind the card! */
+  -webkit-backdrop-filter: blur(12px);
   padding: 40px 30px;
   border-radius: var(--border-radius);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(197, 160, 89, 0.2); /* Subtle gold rim light on the top edge */
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Upgraded physics for a smoother, heavier feel */
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 1;
 }
 .infra-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(197, 160, 89, 0.4);
+  /* Floats higher and scales up slightly to come 'closer' to the user */
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(197, 160, 89, 0.6);
   box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(197, 160, 89, 0.1);
+    0 25px 50px rgba(0, 0, 0, 0.9),
+    /* Deep drop shadow for high altitude */ 0 0 30px rgba(197, 160, 89, 0.15); /* Wide, soft gold glow */
 }
 .infra-icon {
   width: 45px;
@@ -679,11 +696,14 @@ section {
 }
 
 .portfolio-filter-bar {
-  background-color: var(--bg-primary);
-  border-bottom: 1px solid #333;
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
   padding: 20px 0;
   position: sticky;
-  top: 80px;
+  top: 80px; /* Sits exactly below the sticky header */
   z-index: 100;
 }
 .filter-container {
@@ -732,53 +752,89 @@ section {
   gap: 20px;
   padding: 20px 0 !important;
 }
+/* --- PREMIUM IMAGE HOLDERS --- */
 .portfolio-item,
 .catalog-item {
   position: relative;
   overflow: hidden;
-  background-color: #000;
+  background-color: #050505;
+  border-radius: 8px; /* Soft edges look more modern than sharp corners */
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Faint frame */
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
+
 .portfolio-item {
-  border: 1px solid rgba(197, 160, 89, 0.4);
   aspect-ratio: 4 / 3;
 }
 .catalog-item {
   aspect-ratio: 4 / 3;
 }
+.portfolio-item:hover,
+.catalog-item:hover {
+  transform: translateY(-8px);
+  border-color: rgba(197, 160, 89, 0.5); /* Gold frame appears */
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.9),
+    0 0 25px rgba(197, 160, 89, 0.15);
+}
+
+/* Image Transitions (Grayscale to Color) */
 .portfolio-item img,
 .catalog-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.85;
+  opacity: 0.65; /* Starts dim */
+  filter: grayscale(30%); /* Starts slightly faded */
   transition:
-    transform 0.8s ease,
-    opacity 0.8s ease;
+    transform 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.8s ease,
+    filter 0.8s ease;
 }
 .portfolio-item:hover img,
 .catalog-item:hover img {
-  transform: scale(1.05);
-  opacity: 1;
+  transform: scale(1.08); /* Slow zoom in */
+  opacity: 1; /* Wakes up to full brightness */
+  filter: grayscale(0%); /* Full vibrant color */
 }
 
+/* The Glass Text Overlay */
 .portfolio-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 50%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
+  background: linear-gradient(
+    to top,
+    rgba(5, 5, 5, 0.95) 0%,
+    rgba(5, 5, 5, 0.4) 60%,
+    transparent 100%
+  );
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   pointer-events: none;
+  transform: translateY(20px); /* Pushed down slightly */
+  opacity: 0;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay,
+.catalog-item:hover .portfolio-overlay {
+  transform: translateY(0); /* Slides up into place */
+  opacity: 1;
 }
 .portfolio-overlay h3 {
   color: #fff;
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   margin-bottom: 5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 .portfolio-overlay p {
   color: var(--accent-gold);
@@ -786,6 +842,7 @@ section {
   margin-bottom: 0;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .load-more-container {
@@ -799,37 +856,61 @@ section {
   min-width: 200px;
 }
 
-/* --- CALL TO ACTION (CTA) --- */
+/* --- PREMIUM CALL TO ACTION (CTA) --- */
 .cta-section {
-  padding: 40px 20px;
-  background-color: var(--bg-primary);
+  padding: 100px 20px;
+  background-color: #050505;
+  position: relative;
+  overflow: hidden;
 }
+
+/* The Glass Card */
 .cta-content {
-  background-color: var(--bg-secondary);
-  padding: 40px 20px;
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(197, 160, 89, 0.2);
+  background: linear-gradient(
+    145deg,
+    rgba(30, 30, 30, 0.8) 0%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 60px 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(197, 160, 89, 0.4); /* Gold rim light */
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 2;
 }
-/* FIX: CTA Heading color to gold */
+
 .cta-content h2 {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  margin-bottom: 10px;
-  color: var(--accent-gold);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 15px;
+  color: var(--text-main);
 }
+
 .cta-content p {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: var(--text-muted);
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.8;
 }
+
 .cta-content .btn-primary {
-  padding: 15px 40px;
+  padding: 16px 45px;
   font-size: 1.1rem;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 20px rgba(197, 160, 89, 0.15);
+}
+
+.cta-content .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(197, 160, 89, 0.3);
 }
 
 /* --- LIGHTBOX --- */
@@ -1244,6 +1325,10 @@ section {
 }
 
 /* --- CENTERED HERO CONTENT (For Internal Pages) --- */
+.hero.internal-hero {
+  min-height: 70vh; /* يعطي الارتفاع المثالي للصفحات الداخلية */
+}
+
 .centered-hero-content {
   position: relative;
   z-index: 10;
@@ -1253,15 +1338,7 @@ section {
   text-align: center;
 }
 
-/* Forces text to show, overriding the main.js animations */
-.centered-hero-content .hero-over-title,
-.centered-hero-content .hero-title,
-.centered-hero-content .hero-subtitle {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* Alignment and spacing fixes */
+/* Alignment and spacing */
 .centered-hero-content .hero-over-title {
   justify-content: center;
 }
@@ -1270,8 +1347,494 @@ section {
   margin-bottom: 20px;
 }
 
+.centered-hero-content .hero-established {
+  margin-bottom: 30px;
+}
+
 .centered-hero-content .hero-subtitle {
-  max-width: 600px;
+  max-width: 850px;
   margin-bottom: 20px;
   color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* =========================================
+   PREMIUM BACKGROUND UTILITIES
+   ========================================= */
+/* --- 1. THE ARCHITECTURAL GRID (FIXED) --- */
+.bg-premium-grid {
+  background-color: var(--bg-primary);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  position: relative;
+  overflow: hidden; /* CRITICAL FIX: This absolutely prevents any x-overflow scrollbars! */
+}
+
+/* --- THE SIMPLE GRID SCANNER --- */
+.bg-premium-grid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* A clean, simple gold light moving across */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(197, 160, 89, 0.08),
+    transparent
+  );
+  transform: translateX(
+    -100%
+  ); /* Hides safely off-screen using hardware acceleration */
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg-premium-grid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* FIX: Squeezed the gold between 48% and 52% to make it a sharp, thin line */
+  background: linear-gradient(
+    180deg,
+    transparent 42%,
+    rgba(197, 160, 89, 0.2) 50%,
+    transparent 58%
+  );
+  transform: translateY(-100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg-premium-grid.sweep-active::before {
+  /* HOW TO CONTROL SPEED: 
+     Change "8s" (8 seconds) to whatever you want. 
+     Higher number = slower. Lower number = faster. */
+  animation: verticalSweep 10s linear forwards;
+}
+
+@keyframes verticalSweep {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* 2. THE SHOWROOM SPOTLIGHT 
+   Creates a subtle, luxurious gold radial glow at the top of the section */
+.bg-showroom-glow {
+  position: relative;
+  background-color: #080808;
+  overflow: hidden;
+}
+.bg-showroom-glow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  /* Mobile: A soft circle pushed down slightly */
+  background: radial-gradient(
+    circle at center 20%,
+    rgba(197, 160, 89, 0.08) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+/* FIX: Control the orb size and position on Desktop */
+@media (min-width: 768px) {
+  .bg-showroom-glow::before {
+    /* Moves the center of the light down 150px from the top, and makes the fade smaller */
+    background: radial-gradient(
+      circle at center 150px,
+      rgba(197, 160, 89, 0.06) 0%,
+      transparent 50%
+    );
+  }
+}
+
+/* Ensure your text and cards stay above the background effects */
+.bg-premium-grid > .container,
+.bg-showroom-glow > .container {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 767px) {
+  .infra-card {
+    /* Permanently applies the "hover" rim light and shadow on mobile */
+    border-top: 1px solid rgba(197, 160, 89, 0.4);
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(197, 160, 89, 0.1);
+    transform: translateY(-5px); /* Gives it a permanent slight float */
+  }
+}
+
+/* 3. THE POLISHED GALLERY VIGNETTE 
+   Perfect for showcasing images. Draws focus to the center. */
+.bg-gallery-premium {
+  background-color: #0a0a0a; /* Very dark base */
+  background-image: 
+    /* The Vignette: Lighter in the middle, dark at the edges */
+    radial-gradient(
+      circle at center,
+      rgba(36, 36, 36, 0.8) 0%,
+      rgba(10, 10, 10, 1) 100%
+    ),
+    /* The Sheen: A faint diagonal light mimicking polished marble */
+    linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.03) 0%,
+        transparent 40%,
+        transparent 60%,
+        rgba(0, 0, 0, 0.5) 100%
+      );
+  position: relative;
+}
+
+/* =========================================
+   MOBILE-FIRST OVERRIDES (Phones & Small Tablets)
+   ========================================= */
+@media (max-width: 767px) {
+  /* --- FIX 1: The CTA Button Wrapping --- */
+  .cta-content .btn-primary {
+    padding: 15px 20px; /* Reduces side padding to fit the screen */
+    white-space: nowrap; /* Forces the text to NEVER wrap to a second line */
+    width: 100%; /* Makes the button stretch full width, which is much easier to tap on a phone! */
+    display: block;
+  }
+
+  /* --- FIX 2: Portfolio "Always-On" Mobile State --- */
+  .portfolio-item img,
+  .catalog-item img {
+    opacity: 1 !important; /* Forces full brightness immediately */
+    filter: grayscale(0%) !important; /* Forces full vibrant color */
+  }
+
+  .portfolio-overlay {
+    opacity: 1 !important; /* Keeps the text visible at all times */
+    transform: translateY(
+      0
+    ) !important; /* Keeps the text in its final resting place */
+    /* Slightly darker gradient so the white text is perfectly readable over the bright images */
+    background: linear-gradient(
+      to top,
+      rgba(5, 5, 5, 0.98) 0%,
+      rgba(5, 5, 5, 0.7) 60%,
+      transparent 100%
+    );
+  }
+}
+
+/* =========================================
+   ABOUT US - EDITORIAL DESIGN (WHY CHOOSE US)
+   ========================================= */
+.integrated-operation-section {
+  padding: 100px 20px;
+}
+
+.integrated-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Forces cards underneath */
+  gap: 60px;
+  max-width: 900px; /* Keeps the stacked layout from getting too wide */
+  margin: 0 auto;
+}
+
+/* --- OVERLINE TEXT UPGRADE --- */
+.overline-text {
+  color: var(--accent-gold);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.overline-text::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--accent-gold);
+}
+
+.editorial-title {
+  /* Removed the Times New Roman font to match other headings */
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  color: var(--text-main);
+  margin-bottom: 30px;
+  font-weight: 800; /* Bolder, matching your main style */
+}
+
+.editorial-desc {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 90%;
+}
+
+/* Stacked Cards Styling */
+.integrated-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.list-card {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 30px;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.list-card:hover {
+  border-color: rgba(197, 160, 89, 0.4);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.gold-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-gold);
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.list-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+  color: var(--text-main);
+}
+
+.list-card p {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  padding-right: 23px; /* للمحاذاة التامة مع النص أسفل النقطة */
+}
+
+/* =========================================
+   ABOUT US - VISION & GOALS (UPGRADED GRID)
+   ========================================= */
+.vision-goals-section {
+  padding: 120px 20px;
+  /* Stunning dark vignette background */
+  background: radial-gradient(circle at center, #151515 0%, #050505 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.vision-goals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.vision-block {
+  border-right: 3px solid var(--accent-gold);
+  padding-right: 40px;
+  margin-bottom: 0;
+}
+
+.goals-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.goals-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.4s ease;
+}
+
+.goals-list li:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(197, 160, 89, 0.3);
+  transform: translateX(-10px); /* Slides slightly right on hover (RTL) */
+}
+
+.goal-num {
+  font-family: var(--font-en); /* Sleek modern numbers */
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--accent-gold); /* Premium Hollow Gold Outline */
+  line-height: 0.8;
+  flex-shrink: 0;
+}
+
+.goals-list p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+@media (max-width: 991px) {
+  .vision-goals-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .vision-block {
+    padding-right: 20px;
+  }
+}
+
+/* =========================================
+   ABOUT US - HOW IT WORKS (PROCESS GRID)
+   ========================================= */
+.process-section {
+  padding: 120px 20px;
+  /* Flawless gradient that fades perfectly into the #050505 CTA background below it! */
+  background: linear-gradient(to bottom, #111111 0%, #050505 100%);
+}
+
+.process-header-wrap {
+  display: flex;
+  flex-direction: column; /* Stacks the overline and title cleanly */
+  gap: 5px;
+  margin-bottom: 60px;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  /* FIX: Removed 'overflow: hidden' which was causing the 04 hover bug! */
+}
+
+.process-card {
+  padding: 50px 30px;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 3px solid transparent;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+/* Manually round the edges to replace the overflow:hidden effect */
+.process-card:first-child {
+  border-radius: 0 8px 8px 0;
+}
+.process-card:last-child {
+  border-radius: 8px 0 0 8px;
+  border-left: none;
+}
+
+.process-card.active-step,
+.process-card:hover {
+  border-bottom-color: var(--accent-gold);
+  background-color: rgba(255, 255, 255, 0.03);
+  transform: translateY(-8px);
+}
+
+.step-num {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 3.5rem;
+  color: rgba(255, 255, 255, 0.08);
+  display: block;
+  margin-bottom: 20px;
+  line-height: 1;
+  transition: color 0.4s ease;
+}
+
+.process-card:hover .step-num,
+.process-card.active-step .step-num {
+  color: var(--accent-gold);
+}
+
+.process-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: var(--text-main);
+}
+
+.process-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+/* Responsive Process Grid */
+@media (max-width: 1024px) {
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .process-card {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .process-card:nth-child(even) {
+    border-left: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-card {
+    /* الخط العمودي المطفي على اليمين (RTL) */
+    border-right: 3px solid rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02) !important;
+    border-left: none !important;
+    background: transparent !important;
+    transform: none !important;
+    padding: 30px 20px 30px 0;
+  }
+
+  /* إلغاء تأثيرات الـ Hover المزعجة على الجوال */
+  .process-card:hover {
+    background: transparent !important;
+    transform: none !important;
+    border-bottom-color: rgba(255, 255, 255, 0.02) !important;
+  }
+
+  /* عندما يكتشف الجافاسكربت أننا في هذه الخطوة، يضيء الخط والرقم باللون الذهبي */
+  .process-card.active-step {
+    border-right-color: var(--accent-gold) !important;
+  }
+  .process-card.active-step .step-num {
+    color: var(--accent-gold);
+  }
+
+  .process-header-wrap {
+    flex-direction: column;
+    gap: 5px;
+  }
 }

@@ -79,15 +79,15 @@
         <div class="hero-overlay"></div>
 
         <div class="container hero-content centered-hero-content">
-          <div class="hero-over-title">
+          <div class="hero-over-title" id="hero-overtitle">
             <span class="dot"></span>
             <span>دقة · فخامة · تنفيذ · واقع</span>
             <span class="dot"></span>
           </div>
 
-          <h1 class="hero-title">مشاريعنا</h1>
+          <h1 class="hero-title" id="hero-heading" data-text="مشاريعنا"></h1>
 
-          <p class="hero-subtitle">
+          <p class="hero-subtitle" id="hero-text">
             تصفح مجموعة من أبرز أعمالنا التي تعكس التزامنا بأعلى معايير الجودة
             والاحترافية في توريد وتركيب الرخام والجرانيت.
           </p>
@@ -111,13 +111,14 @@
         </div>
       </div>
 
-      <section class="bg-primary-section" id="portfolio-gallery">
+      <section
+        class="portfolio-section bg-primary-section"
+        id="portfolio-gallery"
+        style="padding-bottom: 80px"
+      >
         <div class="catalog-grid container">
           <div class="catalog-item" id="facades" data-category="facades">
-            <img
-              src="https://placehold.co/800x600/242424/c5a059?text=Facade+1"
-              alt="مشروع واجهة"
-            />
+            <img src="../assets/images/project1.jpg" alt="مشروع واجهة" />
             <div class="portfolio-overlay">
               <h3>مقر شركة تجارية</h3>
               <p>واجهات خارجية</p>
@@ -261,7 +262,7 @@
         </div>
       </section>
 
-      <section class="cta-section">
+      <section class="cta-section bg-showroom-glow">
         <div class="container cta-content">
           <h2>هل أنت مستعد لبدء مشروعك القادم؟</h2>
           <p>

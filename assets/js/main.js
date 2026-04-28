@@ -4,16 +4,20 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    /* --- 1. REUSABLE TYPEWRITER EFFECT (STAGGERED REVEAL FIX) --- */
-    function initTypewriter(headingId, textId, btnSelector, headingStr) {
-        const headingEl = document.getElementById(headingId);
+/* --- 1. SMART REUSABLE TYPEWRITER EFFECT --- */
+    function initTypewriter() {
+        const headingEl = document.getElementById("hero-heading");
         const overTitleEl = document.getElementById("hero-overtitle");
         const establishedEl = document.getElementById("hero-established");
-        const paraEl = document.getElementById(textId);
-        const btnEl = btnSelector ? document.querySelector(btnSelector) : null;
+        const paraEl = document.getElementById("hero-text");
+        const btnEl = document.querySelector(".hero-btn");
 
+        // إذا لم يكن هناك عنوان في الصفحة، أوقف الدالة
         if (!headingEl) return;
 
+        // جلب النص من خصائص الـ HTML (لصفحات من نحن ومشاريعنا)، أو استخدام نص الصفحة الرئيسية كافتراضي
+        const headingStr = headingEl.getAttribute("data-text") || "نحول الحجارة إلى تحفة فنية";
+        
         headingEl.innerHTML = ""; 
 
         let i = 0;
@@ -29,10 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 headingEl.classList.remove('typing-cursor');
                 
-                // FIX: Colorize "تحفة فنية" and break to a new line on desktop!
-                headingEl.innerHTML = headingStr.replace("تحفة فنية", "<br class='desktop-break'><span class='gold-text'>تحفة فنية</span>");
+                // تلوين كلمة "تحفة فنية" وكسر السطر فقط في الصفحة الرئيسية
+                if (headingStr.includes("تحفة فنية")) {
+                    headingEl.innerHTML = headingStr.replace("تحفة فنية", "<br class='desktop-break'><span class='gold-text'>تحفة فنية</span>");
+                }
                 
-                // STAGGERED WATERFALL ANIMATION
+                // حركات الظهور المتتالية (Staggered Waterfall Animation)
+                // الأكواد بداخل (if) تضمن عدم حدوث خطأ إذا لم يكن العنصر موجوداً في الصفحة
                 setTimeout(() => { if (overTitleEl) overTitleEl.classList.add('show'); }, 100);
                 setTimeout(() => { if (establishedEl) establishedEl.classList.add('show'); }, 300);
                 setTimeout(() => { if (paraEl) paraEl.classList.add('show'); }, 500);
@@ -43,17 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeHeading, 500);
     }
 
-    // Initialize for Portfolio Page (if it exists)
-    initTypewriter('portfolio-heading', 'portfolio-text', null, "معرض الأعمال", "سجل حافل من الإنجازات في كبرى المشاريع بالمملكة");
-    
-    // Initialize for the Home Page
-    initTypewriter(
-        'hero-heading', 
-        'hero-text', 
-        '.hero-btn', 
-        "نحول الحجارة إلى تحفة فنية", 
-        "توريد وتركيب الحجر والرخام والجرانيت والديكورات الداخلية والواجهات الخارجية — للفلل الخاصة، والقصور، والمباني التجارية، والمشاريع الكبرى في جميع أنحاء المملكة."
-    );
+    // تشغيل الدالة مرة واحدة فقط، وهي ستتكيف تلقائياً مع أي صفحة
+    initTypewriter();
 
     /* --- 2. STICKY HEADER LOGIC --- */
     const header = document.querySelector(".site-header");
@@ -61,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (header) {
         window.addEventListener("scroll", () => {
-            let triggerHeight = heroSection ? heroSection.offsetHeight - 200 : 100;
+            let triggerHeight = heroSection ? heroSection.offsetHeight - 80 : 100;
             if (window.scrollY > triggerHeight) {
                 header.classList.add("sticky-header");
             } else {
@@ -70,7 +68,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* --- 3. MOBILE MENU (SIDE DRAWER) --- */
+
+    /* --- 3. GRID LIGHT SWEEP SENSOR --- */
+    const grids = document.querySelectorAll('.bg-premium-grid');
+    
+    // Check if the browser supports observers
+    if ('IntersectionObserver' in window) {
+        const gridObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // If the user scrolls so the grid is at least 20% visible
+                if (entry.isIntersecting) {
+                    // Add the class to trigger the CSS animation
+                    entry.target.classList.add('sweep-active');
+                    // Stop watching it so it ONLY plays once!
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 }); // 0.2 means 20% of the section is visible
+
+        // Attach the sensor to any grid on the page
+        grids.forEach(grid => gridObserver.observe(grid));
+    }
+
+    /* --- 4. MOBILE MENU (SIDE DRAWER) --- */
     const menuBtn = document.querySelector(".mobile-menu-btn");
     const closeMenuBtn = document.querySelector(".close-menu-btn");
     const navLinks = document.querySelector(".nav-links");
@@ -88,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (navOverlay) navOverlay.addEventListener("click", () => toggleMenu(false));
     }
 
-    /* --- 4. SMART PORTFOLIO FILTER & LOAD MORE --- */
+    /* --- 5. SMART PORTFOLIO FILTER & LOAD MORE --- */
     const filterBtns = document.querySelectorAll(".filter-btn");
     const catalogItems = document.querySelectorAll(".catalog-item");
     const loadMoreBtn = document.getElementById("load-more-btn");
@@ -155,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateGrid();
     }
 
-    /* --- 5. FULL-SCREEN LIGHTBOX --- */
+    /* --- 6. FULL-SCREEN LIGHTBOX --- */
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
     const closeLightboxBtn = document.querySelector(".lightbox-close");
@@ -183,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
     }
 
-    /* --- 6. CINEMATIC WATERFALL DIRECTOR --- */
+    /* --- 7. CINEMATIC WATERFALL DIRECTOR --- */
     const track = document.getElementById('gallery-track');
     const focusOverlay = document.getElementById('blackhole-focus');
     const focusImg = document.getElementById('focus-img');
@@ -216,6 +236,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 setInterval(triggerCinematicFocus, 10000);
             }, 2000);
         }
+    }
+    /* --- 8. MOBILE PROCESS SCROLL TRACKER --- */
+    const processCards = document.querySelectorAll('.process-card');
+    
+    // تأكد من أننا على الجوال لتفعيل هذه الميزة
+    if (processCards.length > 0 && window.innerWidth <= 767) {
+        
+        // إزالة الكلاس الافتراضي لتجنب بقاء الخطوة الأولى مضيئة دائماً
+        processCards.forEach(card => card.classList.remove('active-step'));
+        
+        const processObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // عندما تصبح البطاقة في منتصف الشاشة
+                if (entry.isIntersecting) {
+                    // أطفئ جميع الخطوات
+                    processCards.forEach(c => c.classList.remove('active-step'));
+                    // أضئ الخطوة الحالية فقط
+                    entry.target.classList.add('active-step');
+                }
+            });
+        }, { 
+            // هذا الهامش يخبر المستشعر بالتفعيل فقط عندما يكون العنصر في منتصف الشاشة تقريباً
+            rootMargin: "-40% 0px -40% 0px", 
+            threshold: 0 
+        });
+
+        processCards.forEach(card => processObserver.observe(card));
     }
 
 }); // END OF DOM CONTENT LOADED
