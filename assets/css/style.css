@@ -536,7 +536,7 @@ section {
   align-items: center;
   gap: 80px;
   width: max-content;
-  animation: scrollLeft 15s linear infinite;
+  animation: scrollLeft 30s linear infinite;
 }
 /* .marquee-track:hover {
   animation-play-state: paused;
@@ -546,8 +546,8 @@ section {
   width: auto;
   max-width: 120px;
   flex-shrink: 0;
-  opacity: 0.6; /* شفافية ثابتة ومريحة للعين */
-  /* تم إزالة أي فلاتر أو تأثيرات Hover بناءً على طلبك */
+  opacity: 1; /* Shows full, 100% original colors */
+  filter: none; /* Prevents any grayscale or dimming */
 }
 
 @keyframes scrollLeft {
