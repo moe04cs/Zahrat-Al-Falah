@@ -2,8 +2,6 @@
    ZAHRAT AL FALAH - GLOBAL DESIGN SYSTEM
    ========================================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Montserrat:wght@400;600;800&display=swap");
-
 :root {
   --bg-primary: #1a1a1a;
   --bg-secondary: #242424;
@@ -1088,6 +1086,150 @@ section {
   transform: translateY(-3px); /* Little bounce effect */
 }
 
+/* =========================================
+   CONTACT US PAGE - PREMIUM DESIGN
+   ========================================= */
+.contact-section {
+  padding-top: 80px;
+  position: relative;
+  z-index: 5;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr; /* النموذج أعرض قليلاً من المعلومات */
+  gap: 40px;
+  align-items: start;
+}
+
+.contact-side-info,
+.contact-form-wrapper {
+  padding: 50px 40px;
+  background: linear-gradient(
+    145deg,
+    rgba(20, 20, 20, 0.8) 0%,
+    rgba(10, 10, 10, 0.9) 100%
+  );
+  border-radius: 12px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  transition: transform 0.3s ease;
+}
+
+.info-row:hover {
+  transform: translateX(-5px); /* حركة خفيفة لليسار عند المرور (RTL) */
+}
+
+.icon-box {
+  width: 42px;
+  height: 42px;
+  background-color: #1a1a1a;
+  border: 1px solid rgba(197, 160, 89, 0.3); /* إطار ذهبي خفيف */
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.info-row:hover .icon-box {
+  background-color: var(--accent-gold);
+}
+
+.icon-box svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--accent-gold);
+  transition: fill 0.3s ease;
+}
+
+.info-row:hover .icon-box svg {
+  fill: #111; /* أيقونة داكنة عند التمرير */
+}
+
+.info-text {
+  color: var(--text-main);
+  font-size: 1rem;
+  text-decoration: none;
+  line-height: 1.5;
+  margin-top: 8px;
+  transition: color 0.3s;
+}
+
+a.info-text:hover {
+  color: var(--accent-gold);
+}
+
+/* --- CONTACT FORM UI --- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px;
+  color: var(--text-main);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: var(--font-ar);
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #666;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px rgba(197, 160, 89, 0.1);
+}
+
+/* جعل سهم القائمة المنسدلة أنيقاً */
+.custom-select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c5a059' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: left 15px center; /* السهم على اليسار لأن الموقع RTL */
+  background-size: 15px;
+}
+
 @media (min-width: 1024px) {
   .infrastructure-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -1791,5 +1933,20 @@ section {
   }
   .cta-content .btn-primary {
     width: 100% !important; /* ليمتد الزر بعرض الشاشة في الجوال */
+  }
+  /* Contact Page Mobile */
+  .contact-grid {
+    grid-template-columns: 1fr; /* ترتيب عامودي */
+    gap: 30px;
+  }
+  .form-grid {
+    grid-template-columns: 1fr; /* المدخلات فوق بعضها */
+  }
+  .full-width {
+    grid-column: span 1;
+  }
+  .contact-side-info,
+  .contact-form-wrapper {
+    padding: 30px 20px; /* تقليل الهوامش للجوال */
   }
 }
