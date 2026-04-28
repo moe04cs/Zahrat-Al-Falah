@@ -547,7 +547,7 @@ section {
   max-width: 120px;
   flex-shrink: 0;
   opacity: 1; /* Shows full, 100% original colors */
-  filter: none; /* Prevents any grayscale or dimming */
+  filter: none !important; /* Prevents any grayscale or dimming */
 }
 
 @keyframes scrollLeft {
