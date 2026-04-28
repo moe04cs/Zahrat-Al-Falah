@@ -1432,8 +1432,11 @@ section {
 /* 2. THE SHOWROOM SPOTLIGHT 
    Creates a subtle, luxurious gold radial glow at the top of the section */
 .bg-showroom-glow {
+  /* We stack the glow ON TOP of the solid color in one line */
+  background: 
+    radial-gradient(circle at center 35%, rgba(197, 160, 89, 0.2) 0%, transparent 70%),
+    #050505; 
   position: relative;
-  background-color: #080808;
   overflow: hidden;
 }
 .bg-showroom-glow::before {
