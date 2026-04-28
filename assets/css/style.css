@@ -988,16 +988,6 @@ section {
   line-height: 1.8;
   margin-bottom: 20px;
 }
-@media (min-width: 768px) {
-  .about-grid {
-    flex-direction: row;
-    gap: 60px;
-  }
-  .about-image,
-  .about-info {
-    flex: 1;
-  }
-}
 
 /* --- FOOTER --- */
 .site-footer {
@@ -1089,232 +1079,6 @@ section {
   transform: translateY(-3px); /* Little bounce effect */
 }
 
-/* =========================================
-   MEDIA QUERIES (RESPONSIVE OVERRIDES)
-   ========================================= */
-
-@media (max-width: 767px) {
-  .catalog-grid {
-    padding: 20px 0;
-    gap: 10px;
-  }
-  .catalog-item {
-    border-radius: 0;
-  }
-  .hero-content {
-    text-align: center;
-  }
-  .hero-over-title {
-    justify-content: center;
-  }
-  .nav-links {
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-  }
-
-  .desktop-lang {
-    display: none !important;
-  }
-
-  .catalog-grid {
-    padding: 20px 0;
-    gap: 10px;
-  }
-  .catalog-item {
-    border-radius: 0;
-  }
-  .hero-content {
-    text-align: center;
-  }
-  .hero-over-title {
-    justify-content: center;
-  }
-}
-
-@media (min-width: 768px) {
-  :root {
-    --section-padding: 80px 20px;
-  }
-  p {
-    font-size: 1.1rem;
-  }
-  .desktop-break {
-    display: block;
-  } /* Activates line break on desktop */
-  .btn-primary {
-    width: auto;
-  }
-
-  /* --- DESKTOP LANGUAGE BUTTON --- */
-  .desktop-lang {
-    display: inline-block !important;
-    color: var(--accent-gold) !important;
-    border: 1px solid var(--accent-gold) !important;
-    padding: 6px 14px;
-    border-radius: 4px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    text-decoration: none;
-  }
-
-  .desktop-lang:hover {
-    background-color: transparent !important;
-    color: var(--accent-gold) !important;
-    transform: translateY(-3px); /* Lifts the button up slightly when hovered */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Adds a soft shadow underneath the lift */
-  }
-
-  .flex-grid {
-    flex-direction: row;
-    gap: 30px;
-  }
-  .flex-grid > * {
-    flex: 1;
-  }
-  .logo img {
-    height: 55px;
-  }
-  .mobile-menu-btn,
-  .mobile-overlay,
-  .close-menu-btn,
-  .mobile-controls {
-    display: none !important;
-  }
-  .nav-links {
-    position: static;
-    width: auto;
-    height: auto;
-    background-color: transparent;
-    flex-direction: row;
-    padding: 0;
-    gap: 30px !important;
-    box-shadow: none;
-    right: 0;
-    display: flex;
-    align-items: center;
-  }
-  /* Hides the mobile logo bar on desktop */
-  .mobile-menu-top {
-    display: none;
-  }
-
-  /* Stops the links from animating on desktop */
-  .nav-links a.main-link {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .nav-links a.main-link {
-    font-size: 1rem !important;
-    white-space: nowrap !important;
-    color: var(--text-main);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-  }
-  .nav-links a.main-link:hover {
-    color: var(--accent-gold);
-  }
-
-  /* FIX: Forces the english button to stay gold on desktop */
-  .nav-links a.lang-switch {
-    font-size: 1rem !important;
-    white-space: nowrap !important;
-    color: var(--accent-gold) !important;
-  }
-
-  /* FIX: Expand Marquee Mask on Desktop */
-  .client-marquee::before,
-  .client-marquee::after {
-    width: 120px;
-  }
-  .marquee-track {
-    gap: 100px;
-  }
-  .client-logo {
-    height: 150px;
-    max-width: none;
-  }
-
-  .infrastructure-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .cta-content {
-    padding: 50px 40px !important;
-  }
-  .catalog-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .catalog-item {
-    border-radius: var(--border-radius);
-  }
-  .footer-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 20px;
-    align-items: start;
-  }
-}
-
-@media (min-width: 992px) {
-  .portfolio-filter-bar {
-    top: 85px;
-    padding: 15px 0;
-  }
-  .filter-container {
-    justify-content: center;
-    gap: 25px;
-    overflow-x: visible;
-  }
-  .filter-btn {
-    padding: 8px 25px;
-    font-size: 1rem;
-  }
-  .catalog-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    padding: 60px 0;
-    padding-top: 30px !important;
-  }
-  .load-more-container {
-    padding-top: 20px !important;
-    padding-bottom: 40px !important;
-  }
-  .catalog-item img {
-    transition:
-      transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-      opacity 0.8s ease;
-  }
-  .catalog-item:hover img {
-    transform: scale(1.08);
-  }
-  .portfolio-overlay {
-    height: 70%;
-    padding: 40px 30px;
-    transform: translateY(15px);
-    opacity: 0.9;
-    transition:
-      transform 0.4s ease,
-      opacity 0.4s ease;
-  }
-  .catalog-item:hover .portfolio-overlay {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  .portfolio-grid-asymmetric {
-    grid-template-columns: 1.6fr 1fr;
-    grid-template-rows: repeat(2, 320px);
-  }
-  .portfolio-item {
-    aspect-ratio: auto;
-    height: 100%;
-  }
-  .featured-large {
-    grid-row: 1 / span 2;
-  }
-}
-
 @media (min-width: 1024px) {
   .infrastructure-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -1373,26 +1137,6 @@ section {
 }
 
 /* --- THE SIMPLE GRID SCANNER --- */
-.bg-premium-grid::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* A clean, simple gold light moving across */
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(197, 160, 89, 0.08),
-    transparent
-  );
-  transform: translateX(
-    -100%
-  ); /* Hides safely off-screen using hardware acceleration */
-  pointer-events: none;
-  z-index: 1;
-}
 
 .bg-premium-grid::before {
   content: "";
@@ -1443,51 +1187,12 @@ section {
   position: relative;
   overflow: hidden;
 }
-.bg-showroom-glow::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  height: 100%;
-  /* Mobile: A soft circle pushed down slightly */
-  background: radial-gradient(
-    circle at center 20%,
-    rgba(197, 160, 89, 0.08) 0%,
-    transparent 65%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-/* FIX: Control the orb size and position on Desktop */
-@media (min-width: 768px) {
-  .bg-showroom-glow::before {
-    /* Moves the center of the light down 150px from the top, and makes the fade smaller */
-    background: radial-gradient(
-      circle at center 150px,
-      rgba(197, 160, 89, 0.06) 0%,
-      transparent 50%
-    );
-  }
-}
 
 /* Ensure your text and cards stay above the background effects */
 .bg-premium-grid > .container,
 .bg-showroom-glow > .container {
   position: relative;
   z-index: 2;
-}
-
-@media (max-width: 767px) {
-  .infra-card {
-    /* Permanently applies the "hover" rim light and shadow on mobile */
-    border-top: 1px solid rgba(197, 160, 89, 0.4);
-    box-shadow:
-      0 15px 35px rgba(0, 0, 0, 0.8),
-      0 0 20px rgba(197, 160, 89, 0.1);
-    transform: translateY(-5px); /* Gives it a permanent slight float */
-  }
 }
 
 /* 3. THE POLISHED GALLERY VIGNETTE 
@@ -1506,40 +1211,6 @@ section {
     radial-gradient(circle at center, rgba(45, 45, 45, 0.9) 0%, #0a0a0a 100%),
     /* LAYER 3: The Base Color */ #0a0a0a;
   position: relative;
-}
-
-/* =========================================
-   MOBILE-FIRST OVERRIDES (Phones & Small Tablets)
-   ========================================= */
-@media (max-width: 767px) {
-  /* --- FIX 1: The CTA Button Wrapping --- */
-  .cta-content .btn-primary {
-    padding: 15px 20px; /* Reduces side padding to fit the screen */
-    white-space: nowrap; /* Forces the text to NEVER wrap to a second line */
-    width: 100%; /* Makes the button stretch full width, which is much easier to tap on a phone! */
-    display: block;
-  }
-
-  /* --- FIX 2: Portfolio "Always-On" Mobile State --- */
-  .portfolio-item img,
-  .catalog-item img {
-    opacity: 1 !important; /* Forces full brightness immediately */
-    filter: grayscale(0%) !important; /* Forces full vibrant color */
-  }
-
-  .portfolio-overlay {
-    opacity: 1 !important; /* Keeps the text visible at all times */
-    transform: translateY(
-      0
-    ) !important; /* Keeps the text in its final resting place */
-    /* Slightly darker gradient so the white text is perfectly readable over the bright images */
-    background: linear-gradient(
-      to top,
-      rgba(5, 5, 5, 0.98) 0%,
-      rgba(5, 5, 5, 0.7) 60%,
-      transparent 100%
-    );
-  }
 }
 
 /* =========================================
@@ -1806,7 +1477,274 @@ section {
   }
 }
 
+/* =========================================
+   MEDIA QUERIES (RESPONSIVE OVERRIDES)
+   ========================================= */
+
+@media (min-width: 992px) {
+  .portfolio-filter-bar {
+    top: 85px;
+    padding: 15px 0;
+  }
+  .filter-container {
+    justify-content: center;
+    gap: 25px;
+    overflow-x: visible;
+  }
+  .filter-btn {
+    padding: 8px 25px;
+    font-size: 1rem;
+  }
+  .catalog-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 60px 0;
+    padding-top: 30px !important;
+  }
+  .load-more-container {
+    padding-top: 20px !important;
+    padding-bottom: 40px !important;
+  }
+  .catalog-item img {
+    transition:
+      transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      opacity 0.8s ease;
+  }
+  .catalog-item:hover img {
+    transform: scale(1.08);
+  }
+  .portfolio-overlay {
+    height: 70%;
+    padding: 40px 30px;
+    transform: translateY(15px);
+    opacity: 0.9;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+  }
+  .catalog-item:hover .portfolio-overlay {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .portfolio-grid-asymmetric {
+    grid-template-columns: 1.6fr 1fr;
+    grid-template-rows: repeat(2, 320px);
+  }
+  .portfolio-item {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+  .featured-large {
+    grid-row: 1 / span 2;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-padding: 80px 20px;
+  }
+  p {
+    font-size: 1.1rem;
+  }
+  .desktop-break {
+    display: block;
+  } /* Activates line break on desktop */
+  .btn-primary {
+    width: auto;
+  }
+
+  /* --- DESKTOP LANGUAGE BUTTON --- */
+  .desktop-lang {
+    display: inline-block !important;
+    color: var(--accent-gold) !important;
+    border: 1px solid var(--accent-gold) !important;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .desktop-lang:hover {
+    background-color: transparent !important;
+    color: var(--accent-gold) !important;
+    transform: translateY(-3px); /* Lifts the button up slightly when hovered */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Adds a soft shadow underneath the lift */
+  }
+
+  .flex-grid {
+    flex-direction: row;
+    gap: 30px;
+  }
+  .flex-grid > * {
+    flex: 1;
+  }
+  .logo img {
+    height: 55px;
+  }
+  .mobile-menu-btn,
+  .mobile-overlay,
+  .close-menu-btn,
+  .mobile-controls {
+    display: none !important;
+  }
+  .nav-links {
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    flex-direction: row;
+    padding: 0;
+    gap: 30px !important;
+    box-shadow: none;
+    right: 0;
+    display: flex;
+    align-items: center;
+  }
+  /* Hides the mobile logo bar on desktop */
+  .mobile-menu-top {
+    display: none;
+  }
+
+  /* Stops the links from animating on desktop */
+  .nav-links a.main-link {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .nav-links a.main-link {
+    font-size: 1rem !important;
+    white-space: nowrap !important;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  .nav-links a.main-link:hover {
+    color: var(--accent-gold);
+  }
+
+  /* FIX: Forces the english button to stay gold on desktop */
+  .nav-links a.lang-switch {
+    font-size: 1rem !important;
+    white-space: nowrap !important;
+    color: var(--accent-gold) !important;
+  }
+
+  /* FIX: Expand Marquee Mask on Desktop */
+  .client-marquee::before,
+  .client-marquee::after {
+    width: 120px;
+  }
+  .marquee-track {
+    gap: 100px;
+  }
+  .client-logo {
+    height: 150px;
+    max-width: none;
+  }
+
+  .infrastructure-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cta-content {
+    padding: 50px 40px !important;
+  }
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .catalog-item {
+    border-radius: var(--border-radius);
+  }
+  .footer-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px;
+    align-items: start;
+  }
+  .about-grid {
+    flex-direction: row;
+    gap: 60px;
+  }
+  .about-image,
+  .about-info {
+    flex: 1;
+  }
+}
 @media (max-width: 767px) {
+  .catalog-grid {
+    padding: 20px 0;
+    gap: 10px;
+  }
+  .catalog-item {
+    border-radius: 0;
+  }
+  .hero-content {
+    text-align: center;
+  }
+  .hero-over-title {
+    justify-content: center;
+  }
+  .nav-links {
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+  }
+
+  .desktop-lang {
+    display: none !important;
+  }
+
+  .catalog-grid {
+    padding: 20px 0;
+    gap: 10px;
+  }
+  .catalog-item {
+    border-radius: 0;
+  }
+  .hero-content {
+    text-align: center;
+  }
+  .hero-over-title {
+    justify-content: center;
+  }
+  .infra-card {
+    /* Permanently applies the "hover" rim light and shadow on mobile */
+    border-top: 1px solid rgba(197, 160, 89, 0.4);
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(197, 160, 89, 0.1);
+    transform: translateY(-5px); /* Gives it a permanent slight float */
+  }
+
+  /* --- FIX 1: The CTA Button Wrapping --- */
+  .cta-content .btn-primary {
+    padding: 15px 20px; /* Reduces side padding to fit the screen */
+    white-space: nowrap; /* Forces the text to NEVER wrap to a second line */
+    width: 100%; /* Makes the button stretch full width, which is much easier to tap on a phone! */
+    display: block;
+  }
+
+  /* --- FIX 2: Portfolio "Always-On" Mobile State --- */
+  .portfolio-item img,
+  .catalog-item img {
+    opacity: 1 !important; /* Forces full brightness immediately */
+    filter: grayscale(0%) !important; /* Forces full vibrant color */
+  }
+
+  .portfolio-overlay {
+    opacity: 1 !important; /* Keeps the text visible at all times */
+    transform: translateY(
+      0
+    ) !important; /* Keeps the text in its final resting place */
+    /* Slightly darker gradient so the white text is perfectly readable over the bright images */
+    background: linear-gradient(
+      to top,
+      rgba(5, 5, 5, 0.98) 0%,
+      rgba(5, 5, 5, 0.7) 60%,
+      transparent 100%
+    );
+  }
   .process-grid {
     grid-template-columns: 1fr;
   }
@@ -1840,24 +1778,20 @@ section {
     flex-direction: column;
     gap: 5px;
   }
-}
 
-@media (max-width: 767px) {
-  /* --- BOOSTED MOBILE GLOW --- */
-  .bg-showroom-glow::before {
-    /* 1. Increased opacity from 0.08 to 0.18 so it's actually visible on phone screens */
-    /* 2. Adjusted position to 'center 40%' so it sits directly behind the card on tall screens */
-    background: radial-gradient(
-      circle at center 40%,
-      rgba(197, 160, 89, 0.18) 0%,
-      transparent 70%
-    );
-    /* 3. Ensure it stretches fully */
-    width: 150vw;
-    height: 100%;
-    opacity: 1;
+  .bg-showroom-glow {
+    /* 1. Boost opacity from 0.2 to 0.4 for mobile screens */
+    /* 2. Adjust circle position to 'center 40%' to sit perfectly behind the CTA */
+    background:
+      radial-gradient(
+        circle at center 40%,
+        rgba(197, 160, 89, 0.4) 0%,
+        transparent 70%
+      ),
+      #050505 !important;
   }
 
+  /* check this one */
   .cta-section {
     /* Ensures the section has a clean base for the glow to sit on */
     background-color: #050505 !important;
