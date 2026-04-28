@@ -1950,3 +1950,91 @@ a.info-text:hover {
     padding: 30px 20px; /* تقليل الهوامش للجوال */
   }
 }
+
+/* =========================================
+   SUCCESS MODAL (FORMSPREE AJAX)
+   ========================================= */
+.modal-overlay {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  position: relative;
+  text-align: center;
+  padding: 50px 40px;
+  max-width: 450px;
+  width: 90%;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 35px;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: var(--accent-gold);
+}
+
+.success-icon {
+  width: 70px;
+  height: 70px;
+  background-color: rgba(197, 160, 89, 0.1);
+  border: 2px solid var(--accent-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}
+
+.success-icon svg {
+  width: 35px;
+  height: 35px;
+  fill: none;
+  stroke: var(--accent-gold);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.modal-overlay.active .success-icon svg {
+  /* Draws the checkmark when the modal opens */
+  animation: drawCheck 0.6s ease 0.3s forwards;
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

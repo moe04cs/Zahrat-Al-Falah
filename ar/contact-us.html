@@ -187,11 +187,11 @@
           </div>
 
           <form
+            id="contactForm"
             action="https://formspree.io/f/mnjlepbn"
             method="POST"
             class="contact-form-wrapper glass-panel"
           >
-            <input type="hidden" name="_next" value="thanks.html" />
             <h3
               style="
                 color: var(--text-main);
@@ -267,6 +267,35 @@
               </button>
             </div>
           </form>
+          <div id="success-modal" class="modal-overlay">
+            <div class="modal-content glass-panel">
+              <span class="modal-close">&times;</span>
+              <div class="success-icon">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <h3
+                style="
+                  color: var(--text-main);
+                  margin-bottom: 10px;
+                  font-size: 1.8rem;
+                "
+              >
+                تم إرسال طلبك بنجاح!
+              </h3>
+              <p
+                style="
+                  color: var(--text-muted);
+                  font-size: 1.1rem;
+                  line-height: 1.6;
+                "
+              >
+                شكراً لاختيارك شركة زهرة الفلاح. لقد استلمنا رسالتك وسنتواصل معك
+                قريباً.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </main>

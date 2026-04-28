@@ -264,5 +264,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
         processCards.forEach(card => processObserver.observe(card));
     }
+    /* --- 9. FORMSPREE AJAX MODAL LOGIC --- */
+    const contactForm = document.getElementById("contactForm");
+    const successModal = document.getElementById("success-modal");
+    
+    if (contactForm && successModal) {
+        const closeModalBtn = successModal.querySelector(".modal-close");
+
+        contactForm.addEventListener("submit", async function(e) {
+            e.preventDefault(); // Stop the browser from leaving the page
+            
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = "جاري الإرسال... ⏳"; 
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = "0.7";
+
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: contactForm.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json' // Forces Formspree to return data, not a redirect
+                    }
+                });
+
+                if (response.ok) {
+                    contactForm.reset(); // Clear the inputs
+                    successModal.classList.add("active"); // Trigger the popup
+                } else {
+                    alert("عذراً، حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة لاحقاً.");
+                }
+            } catch (error) {
+                alert("عذراً، تأكد من اتصالك بالإنترنت وحاول مرة أخرى.");
+            } finally {
+                // Restore button state
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = "1";
+            }
+        });
+
+        // Close Modal Logic (Click X, click outside, or press ESC)
+        const closeModal = () => successModal.classList.remove("active");
+        
+        if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+        successModal.addEventListener("click", (e) => {
+            if (e.target === successModal) closeModal();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && successModal.classList.contains("active")) {
+                closeModal();
+            }
+        });
+    }
 
 }); // END OF DOM CONTENT LOADED
