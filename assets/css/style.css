@@ -1433,9 +1433,13 @@ section {
    Creates a subtle, luxurious gold radial glow at the top of the section */
 .bg-showroom-glow {
   /* We stack the glow ON TOP of the solid color in one line */
-  background: 
-    radial-gradient(circle at center 35%, rgba(197, 160, 89, 0.2) 0%, transparent 70%),
-    #050505; 
+  background:
+    radial-gradient(
+      circle at center 35%,
+      rgba(197, 160, 89, 0.2) 0%,
+      transparent 70%
+    ),
+    #050505;
   position: relative;
   overflow: hidden;
 }
@@ -1489,22 +1493,18 @@ section {
 /* 3. THE POLISHED GALLERY VIGNETTE 
    Perfect for showcasing images. Draws focus to the center. */
 .bg-gallery-premium {
-  background-color: #0a0a0a; /* Very dark base */
-  background-image: 
-    /* The Vignette: Lighter in the middle, dark at the edges */
-    radial-gradient(
-      circle at center,
-      rgba(36, 36, 36, 0.8) 0%,
-      rgba(10, 10, 10, 1) 100%
-    ),
-    /* The Sheen: A faint diagonal light mimicking polished marble */
+  background: 
+    /* LAYER 1: The Silver Sheen (Diagonal light) */
     linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.03) 0%,
-        transparent 40%,
-        transparent 60%,
-        rgba(0, 0, 0, 0.5) 100%
-      );
+      135deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    /* LAYER 2: The Center Glow (Silver/Grey Vignette) */
+    radial-gradient(circle at center, rgba(45, 45, 45, 0.9) 0%, #0a0a0a 100%),
+    /* LAYER 3: The Base Color */ #0a0a0a;
   position: relative;
 }
 
